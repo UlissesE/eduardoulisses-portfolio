@@ -1,3 +1,4 @@
+import AboutSection from "./components/AboutSection.tsx";
 import Hero from "./components/Hero";
 import Squares from "./components/reactBits/Squares.tsx";
 
@@ -6,6 +7,7 @@ function App() {
     <div className="relative">
       <Squares speed={0.3} direction="diagonal"/>
       <Hero />
+      <AboutSection/>
     </div>
   );
 }
