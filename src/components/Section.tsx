@@ -18,11 +18,11 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`flex flex-col items-center justify-center px-4 py-20 relative z-10 pointer-events-none ${className}`}
+      className={`flex-col items-center justify-center px-4 py-20 relative z-10 pointer-events-none ${className}`}
     >
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center relative z-5">
-          <h2 className="text-7xl mb-16 text-center pointer-events-auto">
+          <h2 className="text-7xl mb-6 text-center pointer-events-auto">
             {titulo} <span className="text-primary">{tituloDestacado}</span>
           </h2>
           {descricao && (
