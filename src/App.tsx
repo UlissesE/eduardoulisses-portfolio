@@ -1,5 +1,6 @@
 import AboutSection from "./components/AboutSection.tsx";
 import Hero from "./components/Hero";
+import ProjectsSection from "./components/ProjectsSection.tsx";
 import Squares from "./components/reactBits/Squares.tsx";
 import TechStack from "./components/TechStack.tsx";
 
@@ -10,6 +11,7 @@ function App() {
       <Hero />
       <AboutSection/>
       <TechStack/>
+      <ProjectsSection/>
     </div>
   );
 }

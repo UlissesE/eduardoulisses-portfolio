@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "owner": "Eduardo Ulisses",
+    "updatedAt": "2026-01-08",
+    "description": "Portfólio de projetos pessoais, acadêmicos e experimentais."
+  },
+  "projects": [
+    {
+      "id": "proj-001",
+      "title": "Protótipo plataforma Digital para o Futebol Feminino",
+      "slug": "plataforma-futebol-feminino",
+      "highlight": true,
+      "status": "finalizado",
+      "type": "acadêmico",
+      "year": 2025,
+      "shortDescription": "Plataforma digital voltada para visibilidade, gestão e engajamento do futebol feminino.",
+      "longDescription": "Projeto acadêmico focado na criação de uma plataforma escalável para apoiar clubes, atletas e eventos do futebol feminino, utilizando arquitetura em camadas e boas práticas de engenharia de software.",
+      "technologies": ["JavaScript", "React", "TailwindCSS"],
+
+      "links": {
+        "repository": "https://github.com/Goal-Breakers/GoalBreakers-LandingPage",
+        "liveDemo": "https://goalbreakers-page.vercel.app/"
+      },
+      "media": {
+        "thumbnail": "/images/projects/gol-breakers/thumb.png",
+        "images": [
+          "/images/projects/gol-breakers/1.png",
+          "/images/projects/gol-breakers/2.png"
+        ]
+      }
+    },
+    {
+      "id": "proj-002",
+      "title": "SkillSwap",
+      "slug": "sistema-app-reskilling",
+      "highlight": true,
+      "status": "concluído",
+      "type": "acadêmico",
+      "year": 2025,
+      "shortDescription": "Aplicação desenvolvida durante a Global Solution para resolver um problema global - O Futuro do Trabalho",
+      "longDescription": "Projeto acadêmico com foco em análise de requisitos, modelagem de solução e desenvolvimento de uma aplicação funcional orientada a impacto social. O SkillSwap é uma plataforma web moderna voltada à troca de habilidades e conexão entre talentos, simulando um ambiente real de aprendizado colaborativo e networking profissional. A aplicação oferece exploração de perfis, busca inteligente por habilidades, dark mode persistente e uma interface responsiva com animações suaves. Como diferencial, o projeto integrou um robozinho programado em Arduino para auxiliar no desenvolvimento da plataforma: ele pisca para lembrar a execução de tarefas, pisca mais rápido ao concluir uma trilha de aprendizado e emite sons em ambos os casos, unindo software e hardware em uma experiência prática e criativa.",
+      "technologies": ["React", "JavaScript", "Python", "Loveble", "Arduino"],
+      "links": {
+        "repository": "https://github.com/GS-SkillSwap",
+        "liveDemo": false
+      },
+      "media": {
+        "thumbnail": "/images/projects/global/thumb.png",
+        "images": [
+          "/images/projects/skillswap/1.png",
+          "/images/projects/skillswap/2.png",
+          "/images/projects/skillswap/3.png",
+          "/images/projects/skillswap/4.png",
+          "/images/projects/skillswap/5.png"
+        ]
+      }
+    }
+  ]
+}
