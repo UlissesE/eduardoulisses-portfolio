@@ -18,7 +18,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`flex-col items-center justify-center px-4 py-20 relative z-10 pointer-events-none ${className}`}
+      className={`flex flex-col items-center justify-center px-4 py-20 relative z-10 ${className}`}
     >
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center relative z-5">

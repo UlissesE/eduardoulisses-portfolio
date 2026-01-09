@@ -10,17 +10,27 @@ import TechStack from "./components/TechStack.tsx";
 function App() {
   return (
     <div className="relative">
-      <Squares speed={0.3} direction="diagonal"/>
-      <Navbar/>
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          opacity: 6/10,
+          zIndex: 1,
+          pointerEvents: "auto",
+        }}
+      >
+        <Squares speed={0.3} direction="diagonal" />
+      </div>
+      <Navbar />
       <Hero />
-      <AboutSection/>
-      <TechStack/>
-      <ProjectsSection/>
-      <ContactSection/>
-      <Footer/>
+      <AboutSection />
+      <TechStack />
+      <ProjectsSection />
+      <ContactSection />
+      <Footer />
     </div>
   );
 }
-
 
 export default App;
