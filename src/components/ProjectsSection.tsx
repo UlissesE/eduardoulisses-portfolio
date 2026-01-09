@@ -13,7 +13,7 @@ export default function ProjectsSection() {
       tituloDestacado="projetos"
       descricao="Seleção dos meus melhores trabalhos. Cada projeto representa um desafio superado e aprendizado consolidado."
     >
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 pointer-events-auto">
         {projects.map((project) => (
           <div
             key={project.title}
