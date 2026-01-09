@@ -4,10 +4,13 @@ import eups from "../assets/images/EUPS.png";
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-4 py-20 relative z-10 pointer-events-none">
+    <section
+      id="hero"
+      className="min-h-screen flex flex-col items-center justify-center px-4 py-20 relative z-10 pointer-events-none"
+    >
       <div className="flex items-center absolute top-50">
-       <ChevronRight/>
-       <h3 className="text-primary">Hello, world! Eu sou</h3> 
+        <ChevronRight />
+        <h3 className="text-primary">Hello, world! Eu sou</h3>
       </div>
       <div className="flex flex-col items-center relative z-5">
         <h1 className="text-6xl md:text-8xl text-center font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent pointer-events-auto">
