@@ -1,6 +1,7 @@
 interface SectionProps {
   titulo?: string;
   tituloDestacado?: string;
+  tituloAnimacao?: string;
   descricao?: string;
   id?: string;
   className?: string;
@@ -10,6 +11,7 @@ interface SectionProps {
 export default function Section({
   titulo,
   tituloDestacado,
+  tituloAnimacao,
   descricao,
   id,
   className,
@@ -22,11 +24,11 @@ export default function Section({
     >
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center relative z-5">
-          <h2 className="text-7xl mb-6 text-center pointer-events-auto">
+          <h2 className={`text-7xl mb-6 text-center ${tituloAnimacao}`}>
             {titulo} <span className="text-primary">{tituloDestacado}</span>
           </h2>
           {descricao && (
-            <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto pointer-events-auto">
+            <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
               {descricao}
             </p>
           )}

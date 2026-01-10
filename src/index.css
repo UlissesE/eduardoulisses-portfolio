@@ -120,6 +120,23 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 }
+@theme {
+  --animate-wiggle: wiggle 1s ease-in-out infinite;
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(3deg);
+    }
+  }
+}
+.world::after {
+  content: "👋";
+  display: inline-block;
+  animation: wiggle 1s ease-in-out infinite;
+}
 
 @layer base {
   * {

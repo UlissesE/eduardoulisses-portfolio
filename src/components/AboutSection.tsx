@@ -1,12 +1,37 @@
 import Section from "./Section";
 import image from "../assets/images/image.png";
 import { Gamepad2Icon, Trophy } from "lucide-react";
+import { motion, useInView } from "motion/react";
+import { useRef } from "react";
 
 export default function AboutSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <Section titulo="Hello," tituloDestacado="world! 👋" id="sobre" className="">
-      <div className="grid md:grid-cols-[300px_1fr] gap-12 items-start py-12">
-        <div className="space-y-4">
+    <Section
+      titulo="Hello,"
+      tituloDestacado="world!"
+      id="sobre"
+      tituloAnimacao="world"
+    >
+      <motion.div
+        className="grid md:grid-cols-[300px_1fr] gap-12 items-start py-12"
+        ref={ref}
+        initial={{ y: 50, opacity: 0 }}
+        animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+        transition={{
+          duration: 0.8,
+          ease: "easeOut",
+          delay: 0.2,
+        }}
+      >
+        <motion.div
+          className="space-y-4"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="relative group">
             {/* background brilhante atrás da imagem */}
             <div className="absolute inset-0 bg-primary rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition"></div>
@@ -20,8 +45,13 @@ export default function AboutSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             </div>
           </div>
-        </div>
-        <div className="space-y-6">
+        </motion.div>
+        <motion.div
+          className="space-y-6"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
           <div className="pointer-events-auto">
             <p className="text-2xl text-foreground leading-relaxed mb-4">
               Sou um estudante apaixonado por{" "}
@@ -45,9 +75,14 @@ export default function AboutSection() {
               trabalhando em projetos pessoais e buscando novos desafios.
             </p>
           </div>
-        </div>
-      </div>
-      <div className="bg-card rounded-lg p-6 border border-border hover:border-primary transition-all">
+        </motion.div>
+      </motion.div>
+      <motion.div
+        className="bg-card rounded-lg p-6 border border-border hover:border-primary transition-all"
+        initial={{ y: 20, opacity: 0 }}
+        animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
         <h4 className="text-lg mb-4 flex items-center gap-2">
           <span>Atualmente estudando:</span>
         </h4>
@@ -67,9 +102,14 @@ export default function AboutSection() {
             </span>
           ))}
         </div>
-      </div>
+      </motion.div>
       <div className="grid md:grid-cols-2 gap-6 mt-8">
-        <div className="bg-card border border-border rounded-lg p-6 hover:border-primary transition-all">
+        <motion.div
+          className="bg-card border border-border rounded-lg p-6 hover:border-primary transition-all"
+          initial={{ y: 20, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
           <div className="flex items-center gap-3 mb-3">
             <div className="p-3 bg-primary/10 rounded-lg">
               <Gamepad2Icon className="w-6 h-6 text-primary" />
@@ -80,9 +120,14 @@ export default function AboutSection() {
             No meu tempo livre, gosto de experimentar jogos. Me ajuda a
             trabalhar raciocínio e até mesmo a criatividade :D
           </p>
-        </div>
+        </motion.div>
 
-        <div className="bg-card border border-border rounded-lg p-6 hover:border-primary transition-all">
+        <motion.div
+          className="bg-card border border-border rounded-lg p-6 hover:border-primary transition-all"
+          initial={{ y: 20, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
           <div className="flex items-center gap-3 mb-3">
             <div className="p-3 bg-primary/10 rounded-lg">
               <Trophy className="w-6 h-6 text-primary" />
@@ -93,7 +138,7 @@ export default function AboutSection() {
             Um escape das telas. Depois de um dia de programação, nada como uma
             leitura para descansar o cérebro e a vista.
           </p>
-        </div>
+        </motion.div>
       </div>
     </Section>
   );
