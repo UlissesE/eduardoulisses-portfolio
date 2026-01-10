@@ -106,15 +106,7 @@ export default function GradientText({
           style={{ ...gradientStyle, backgroundPosition }}
         >
           <div
-            className="absolute bg-black rounded-[1.25rem] z-[-1]"
-            style={{
-              width: 'calc(100% - 2px)',
-              height: 'calc(100% - 2px)',
-              left: '50%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)'
-            }}
-          />
+            className="absolute bg-black rounded-[1.25rem] z-[-1] w-[calc(100% - 2px)] h-[calc(100% - 2px)] top-1/2 left-1/2 transform-[translate(-50%, -50%)]"/>
         </motion.div>
       )}
       <motion.div
