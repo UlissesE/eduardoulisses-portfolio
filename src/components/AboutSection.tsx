@@ -5,7 +5,7 @@ import { Gamepad2Icon, Trophy } from "lucide-react";
 export default function AboutSection() {
   return (
     <Section titulo="Hello," tituloDestacado="world! 👋" id="sobre" className="">
-      <div className="grid md:grid-cols-[400px_1fr] gap-12 items-start py-12">
+      <div className="grid md:grid-cols-[300px_1fr] gap-12 items-start py-12">
         <div className="space-y-4">
           <div className="relative group">
             {/* background brilhante atrás da imagem */}
@@ -47,7 +47,7 @@ export default function AboutSection() {
           </div>
         </div>
       </div>
-      <div className="bg-card rounded-lg p-6 border border-border pointer-events-auto">
+      <div className="bg-card rounded-lg p-6 border border-border hover:border-primary transition-all">
         <h4 className="text-lg mb-4 flex items-center gap-2">
           <span>Atualmente estudando:</span>
         </h4>
@@ -68,7 +68,7 @@ export default function AboutSection() {
           ))}
         </div>
       </div>
-      <div className="grid md:grid-cols-2 gap-6 mt-8 pointer-events-auto">
+      <div className="grid md:grid-cols-2 gap-6 mt-8">
         <div className="bg-card border border-border rounded-lg p-6 hover:border-primary transition-all">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-3 bg-primary/10 rounded-lg">
