@@ -18,11 +18,26 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    id: string
+  ) => {
+    e.preventDefault(); // Impede a alteração da URL (#sobre)
+    const element = document.getElementById(id);
+
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth", // Faz a rolagem suave
+        block: "start", // Alinha ao topo
+      });
+    }
+  };
+
   const navItems = [
-    { name: "Sobre", href: "#sobre", icon: <LuUserRound /> },
-    { name: "Tecnologias", href: "#tecnologias", icon: <GrTechnology /> },
-    { name: "Projetos", href: "#projetos", icon: <LuRocket /> },
-    { name: "Contato", href: "#contato", icon: <BsTelephone /> },
+    { name: "Sobre", href: "sobre", icon: <LuUserRound /> },
+    { name: "Tecnologias", href: "tecnologias", icon: <GrTechnology /> },
+    { name: "Projetos", href: "projetos", icon: <LuRocket /> },
+    { name: "Contato", href: "contato", icon: <BsTelephone /> },
   ];
 
   return (
@@ -32,7 +47,10 @@ export default function Navbar() {
       } ${isOpen ? "bg-black" : ""}`}
     >
       <div className="relative max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="#hero" className="flex items-center">
+        <a
+          onClick={(e) => handleScroll(e, "hero")}
+          className="flex items-center cursor-pointer"
+        >
           <img src={logo} alt="Logo" className="w-12 h-12" />
         </a>
 
@@ -40,8 +58,8 @@ export default function Navbar() {
           {navItems.map((item) => (
             <li key={item.name} className="relative">
               <a
-                href={item.href}
-                className="flex items-center gap-3 text-xl text-foreground hover:text-primary transition-colors duration-200 nav-line"
+                onClick={(e) => handleScroll(e, item.href)}
+                className="flex items-center gap-3 text-xl text-foreground hover:text-primary transition-colors duration-200 nav-line cursor-pointer"
               >
                 {item.icon}
                 {item.name}
@@ -61,9 +79,11 @@ export default function Navbar() {
             {navItems.map((item) => (
               <li key={item.name} className="relative border p-4 rounded">
                 <a
-                  href={item.href}
-                  className="flex items-center gap-3 text-xl text-foreground hover:text-primary transition-colors duration-200 nav-line"
-                  onClick={() => setIsOpen(false)} // Fecha o menu ao clicar
+                  className="flex items-center gap-3 text-xl text-foreground hover:text-primary transition-colors duration-200 nav-line cursor-pointer"
+                  onClick={(e) => {
+                    setIsOpen(false);
+                    handleScroll(e, item.href);
+                  }} // Fecha o menu ao clicar
                 >
                   {item.icon}
                   {item.name}
