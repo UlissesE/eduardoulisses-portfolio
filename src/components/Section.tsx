@@ -24,7 +24,9 @@ export default function Section({
     >
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center relative z-5">
-          <h2 className={`text-7xl mb-6 text-center ${tituloAnimacao}`}>
+          <h2
+            className={`text-4xl md:text-7xl mb-6 text-center ${tituloAnimacao}`}
+          >
             {titulo} <span className="text-primary">{tituloDestacado}</span>
           </h2>
           {descricao && (

@@ -16,7 +16,7 @@ export default function AboutSection() {
       tituloAnimacao="world"
     >
       <motion.div
-        className="grid md:grid-cols-[300px_1fr] gap-12 items-start py-12"
+        className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-12 items-start py-12"
         ref={ref}
         initial={{ y: 50, opacity: 0 }}
         animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
@@ -53,7 +53,7 @@ export default function AboutSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <div className="pointer-events-auto">
-            <p className="text-2xl text-foreground leading-relaxed mb-4">
+            <p className="text-lg md:text-2xl text-foreground leading-relaxed mb-4">
               Sou um estudante apaixonado por{" "}
               <strong className="text-primary">tecnologia</strong> e
               <strong className="text-primary"> inovação</strong>, cursando
@@ -67,7 +67,7 @@ export default function AboutSection() {
               . Minha jornada começou com a curiosidade de entender como as
               coisas funcionam "por trás dos panos".
             </p>
-            <p className="text-2xl text-foreground leading-relaxed">
+            <p className="text-lg md:text-2xl text-foreground leading-relaxed">
               Atualmente estou no{" "}
               <strong className="text-primary">3º semestre</strong>, focado em
               desenvolvimento full stack. Acredito que a melhor forma de

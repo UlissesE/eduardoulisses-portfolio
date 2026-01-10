@@ -33,7 +33,7 @@ export default function Hero() {
             colors={["white", "#00ff88", "white", "#00ff88", "white"]}
             animationSpeed={3}
             showBorder={false}
-            className="text-6xl md:text-8xl text-center font-bold mb-6"
+            className="text-8xl text-center font-bold mb-6 text-wrap"
           >
             Eduardo Ulisses
           </GradientText>
@@ -60,16 +60,14 @@ export default function Hero() {
             rotationInterval={5000}
           />
         </motion.div>
-        <motion.div
-          className="flex gap-6 justify-center mt-12 pointer-events-auto"
-        >
+        <motion.div className="flex gap-6 justify-center mt-12 pointer-events-auto">
           <motion.a
             href="https://github.com/UlissesE"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 px-8 py-4 bg-secondary/70 hover:bg-primary/10 border-2 border-border rounded-lg transition-all hover:border-primary hover:scale-105 group"
-            initial={{opacity: 0}}
-            animate= {{opacity: 1}}
+            className="flex items-center gap-3 px-6 py-3 bg-secondary/70 hover:bg-primary/10 border-2 border-border rounded-lg transition-all hover:border-primary hover:scale-105 group"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
           >
             <Github className="w-6 h-6 group-hover:text-primary transition-colors" />
@@ -81,10 +79,10 @@ export default function Hero() {
             href="https://linkedin.com/in/eduardo-ulisses"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 px-8 py-4 bg-secondary/70 hover:bg-primary/10 border-2 border-border rounded-lg transition-all hover:border-primary hover:scale-105 group"
-            initial={{opacity: 0}}
-            animate= {{opacity: 1}}
-            transition={{ duration: 0.8, delay: 1.4}}
+            className="flex items-center gap-3 px-6 py-3 bg-secondary/70 hover:bg-primary/10 border-2 border-border rounded-lg transition-all hover:border-primary hover:scale-105 group"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
           >
             <Linkedin className="w-6 h-6 group-hover:text-primary transition-colors" />
             <span className="group-hover:text-primary transition-colors">
@@ -96,9 +94,9 @@ export default function Hero() {
       <motion.img
         src={eups}
         alt=""
-        className="absolute h-80 top-55 z-4 opacity-30"
+        className="absolute h-40 md:h-80 top-20 md:top-55 z-4 opacity-30"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3}}
+        animate={{ opacity: 0.3 }}
         transition={{ duration: 1, delay: 1 }}
       />
     </section>

@@ -145,6 +145,7 @@
 
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
   }
 
   /**
@@ -214,4 +215,3 @@
 .nav-line:hover::after {
   width: 100%;
 }
-
