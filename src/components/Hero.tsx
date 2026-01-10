@@ -1,5 +1,7 @@
 import { ChevronRight, Github, Linkedin } from "lucide-react";
 import TextType from "./reactBits/TextType";
+import RotatingText from "./reactBits/RotatingText";
+import GradientText from "./reactBits/GradientText";
 import eups from "../assets/images/EUPS.png";
 
 export default function Hero() {
@@ -10,25 +12,41 @@ export default function Hero() {
     >
       <div className="flex items-center absolute top-50">
         <ChevronRight />
-        <h3 className="text-primary">Hello, world! Eu sou</h3>
-      </div>
-      <div className="flex flex-col items-center relative z-5">
-        <h1 className="text-6xl md:text-8xl text-center font-bold mb-6 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent pointer-events-auto">
-          Eduardo Ulisses
-        </h1>
         <TextType
-          text={[
+          text={["Hello, world! Eu sou"]}
+          typingSpeed={50}
+          pauseDuration={150000}
+          showCursor={true}
+          cursorCharacter="|"
+          className="text-primary text-xl"
+        />
+      </div>
+
+      <div className="flex flex-col items-center relative z-5">
+        <GradientText
+          colors={["white", "#00ff88", "white", "#00ff88", "white"]}
+          animationSpeed={3}
+          showBorder={false}
+          className="text-6xl md:text-8xl text-center font-bold mb-6"
+        >
+          Eduardo Ulisses
+        </GradientText>
+        <RotatingText
+          texts={[
             "Desenvolvedor Full Stack em formação",
             "Engenharia de Software",
             "Happy coding!",
           ]}
-          typingSpeed={75}
-          pauseDuration={1500}
-          showCursor={true}
-          cursorCharacter="|"
-          className="text-xl md:text-2xl text-muted-foreground pointer-events-auto"
+          mainClassName="text-xl md:text-2xl text-muted-foreground overflow-hidden"
+          staggerFrom={"last"}
+          initial={{ y: "100%" }}
+          animate={{ y: 0 }}
+          exit={{ y: "-120%" }}
+          staggerDuration={0.025}
+          splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+          transition={{ type: "spring", damping: 30, stiffness: 400 }}
+          rotationInterval={5000}
         />
-
         <div className="flex gap-6 justify-center mt-12 pointer-events-auto">
           <a
             href="https://github.com/UlissesE"

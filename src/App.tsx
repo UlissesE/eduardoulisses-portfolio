@@ -11,14 +11,8 @@ function App() {
   return (
     <div className="relative">
       <div
-        style={{
-          width: "100%",
-          height: "100%",
-          position: "absolute",
-          opacity: 6/10,
-          zIndex: 1,
-          pointerEvents: "auto",
-        }}
+
+        className="w-full h-full absolute opacity-6/10 z-1"
       >
         <Squares speed={0.3} direction="diagonal" />
       </div>
