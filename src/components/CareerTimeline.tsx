@@ -1,5 +1,5 @@
 import Section from "./Section";
-import { GraduationCap, Briefcase, Code2, Terminal } from "lucide-react";
+import { GraduationCap, Briefcase } from "lucide-react";
 
 interface Milestone {
   date: string;
