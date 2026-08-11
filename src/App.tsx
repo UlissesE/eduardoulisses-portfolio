@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar.tsx";
 import ProjectsSection from "./components/ProjectsSection.tsx";
 import Squares from "./components/reactBits/Squares.tsx";
+import CareerTimeline from "./components/CareerTimeline.tsx";
 import TechStack from "./components/TechStack.tsx";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Hero />
       <AboutSection />
       <TechStack />
+      <CareerTimeline />
       <ProjectsSection />
       <ContactSection />
       <Footer />

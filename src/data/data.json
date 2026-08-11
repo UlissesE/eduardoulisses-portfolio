@@ -1,57 +1,72 @@
 {
   "meta": {
     "owner": "Eduardo Ulisses",
-    "updatedAt": "2026-01-08",
+    "updatedAt": "2026-08-10",
     "description": "Portfólio de projetos pessoais, acadêmicos e experimentais."
   },
   "projects": [
     {
-      "id": "proj-001",
-      "title": "Protótipo plataforma Digital para o Futebol Feminino",
-      "slug": "plataforma-futebol-feminino",
+      "id": "proj-004",
+      "title": "Wine Cellar Monitoring System",
+      "slug": "wine-cellar-monitoring",
       "highlight": true,
       "status": "finalizado",
       "type": "acadêmico",
       "year": 2025,
-      "shortDescription": "Plataforma digital voltada para visibilidade, gestão e engajamento do futebol feminino.",
-      "longDescription": "Projeto acadêmico focado na criação de uma plataforma escalável para apoiar clubes, atletas e eventos do futebol feminino, utilizando arquitetura em camadas e boas práticas de engenharia de software.",
-      "technologies": ["JavaScript", "React", "TailwindCSS"],
-
+      "shortDescription": "Resolvi o problema de armazenamento inadequado de vinhos, desenvolvendo um sistema IoT completo com ESP32, stack Fiware e dashboard React em AWS EC2, entregando monitoramento 24/7 com alertas automáticos de temperatura, umidade e luminosidade.",
+      "longDescription": "Sistema IoT completo para monitoramento inteligente de condições ambientais em adegas de vinho. Sensores DHT11 e LDR conectados a um ESP32 enviam dados via MQTT para um servidor Fiware hospedado em AWS EC2, onde são processados pelo Orion Context Broker e armazenados historicamente pelo STH-Comet com MongoDB. Um dashboard React em TypeScript consome as APIs e exibe gráficos interativos em tempo real com indicadores de status (OK/Atenção/Crítico). Toda a infraestrutura é containerizada com Docker Compose, com documentação completa de setup, referência de API e guia do usuário.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "TailwindCSS",
+        "Python",
+        "AWS EC2",
+        "Docker",
+        "MongoDB",
+        "MQTT",
+        "Fiware",
+        "ESP32"
+      ],
       "links": {
-        "repository": "https://github.com/Goal-Breakers/GoalBreakers-LandingPage",
-        "liveDemo": "https://goalbreakers-page.vercel.app/"
+        "repository": "https://github.com/UlissesE/wine-cellar-monitoring",
+        "liveDemo": false
       },
       "media": {
-        "thumbnail": "/images/projects/gol-breakers/thumb.png",
+        "thumbnail": "/images/projects/wine-cellar/thumb.png",
         "images": [
-          "/images/projects/gol-breakers/1.png",
-          "/images/projects/gol-breakers/2.png"
+          "/images/projects/wine-cellar/thumb.png",
+          "/images/projects/wine-cellar/1.png"
         ]
       }
     },
     {
-      "id": "proj-002",
-      "title": "SkillSwap",
-      "slug": "sistema-app-reskilling",
+      "id": "proj-005",
+      "title": "ClienteApp",
+      "slug": "sistema-crud-clientes",
       "highlight": true,
-      "status": "concluído",
-      "type": "acadêmico",
-      "year": 2025,
-      "shortDescription": "Aplicação desenvolvida durante a Global Solution para resolver um problema global - O Futuro do Trabalho.",
-      "longDescription": "Projeto acadêmico com foco em análise de requisitos, modelagem de solução e desenvolvimento de uma aplicação funcional orientada a impacto social. O SkillSwap é uma plataforma web moderna voltada à troca de habilidades e conexão entre talentos, simulando um ambiente real de aprendizado colaborativo e networking profissional. A aplicação oferece exploração de perfis, busca inteligente por habilidades, dark mode persistente e uma interface responsiva com animações suaves. Como diferencial, o projeto integrou um robozinho programado em Arduino para auxiliar no desenvolvimento da plataforma: ele pisca para lembrar a execução de tarefas, pisca mais rápido ao concluir uma trilha de aprendizado e emite sons em ambos os casos, unindo software e hardware em uma experiência prática e criativa.",
-      "technologies": ["React", "JavaScript", "Python", "Loveble", "Arduino"],
+      "status": "finalizado",
+      "type": "pessoal",
+      "year": 2026,
+      "shortDescription": "Demonstrei domínio dos fundamentos de Java, construindo um sistema CRUD completo sem frameworks, com arquitetura em camadas espelhando Spring Boot, entregando um projeto manutenível com OOP, Streams, exceções customizadas e persistência em arquivo.",
+      "longDescription": "Sistema de cadastro e gerenciamento de clientes desenvolvido inteiramente em Java 17, sem frameworks externos. O objetivo foi demonstrar domínio dos fundamentos da linguagem antes de delegar responsabilidades a um framework. A arquitetura em camadas (model, repository, service, ui) replica intencionalmente os padrões do Spring Boot. O sistema suporta dois tipos de clientes — Pessoa Física (CPF) e Pessoa Jurídica (CNPJ) — com CRUD completo, validações, unicidade de documentos, soft delete, relatórios via Stream API e persistência entre execuções por serialização binária.",
+      "technologies": [
+        "Java",
+        "OOP",
+        "Stream API",
+        "Exceptions",
+        "File Serialization",
+        "DDD",
+        "Clean Architecture"
+      ],
       "links": {
-        "repository": "https://github.com/GS-SkillSwap",
+        "repository": "https://github.com/UlissesE/clienteapp",
         "liveDemo": false
       },
       "media": {
-        "thumbnail": "/images/projects/skillswap/thumb.png",
+        "thumbnail": "/images/projects/clienteapp/thumb.png",
         "images": [
-          "/images/projects/skillswap/1.png",
-          "/images/projects/skillswap/2.png",
-          "/images/projects/skillswap/3.png",
-          "/images/projects/skillswap/4.png",
-          "/images/projects/skillswap/5.png"
+          "/images/projects/clienteapp/thumb.png",
+          "/images/projects/clienteapp/1.png"
         ]
       }
     },
@@ -63,9 +78,15 @@
       "status": "concluído",
       "type": "acadêmico",
       "year": 2025,
-      "shortDescription": "Aplicação desenvolvida durante a Global Solution do meu primeiro semestre para resolver um problema global - Detecção e Prevenção de Enchentes.",
+      "shortDescription": "Mitiguei os danos causados por desastres urbanos, construindo um sistema IoT de monitoramento em tempo real, viabilizando alertas preventivos para inundações.",
       "longDescription": "Projeto acadêmico focado na conscientização, detecção e prevenção de enchentes. O projeto detém um site com explicações sobre as enchentes e um quiz educativo. Aplicação Python para simulação de funcionamento do dispositivo arduino. O Principal da aplicação é o projeto em arduino - um dispositivo que desenvolvido para mitigar riscos de alagamentos em áreas urbanas vulneráveis. A solução monitora, em tempo real, o nível da água, temperatura e umidade por meio de sensores integrados ao Arduino, identificando situações de risco e emitindo alertas visuais e sonoros. O sistema utiliza LEDs para indicar estados normal, atenção e crítico, além de um buzzer e exibição das informações em display LCD, garantindo resposta rápida e fácil interpretação. O projeto demonstra a aplicação prática de sensoriamento, automação e tomada de decisão embarcada, simulando um cenário real de prevenção a enchentes com foco em segurança, confiabilidade e impacto social. ",
-      "technologies": ["HTML", "CSS", "JavaScript", "Python", "Arduino"],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Python",
+        "Arduino"
+      ],
       "links": {
         "repository": "https://github.com/GS-Alerta-Seguro",
         "liveDemo": false

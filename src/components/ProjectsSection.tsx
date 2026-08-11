@@ -1,7 +1,7 @@
 import { SiGithub } from "react-icons/si";
 import data from "../data/data.json";
 import Section from "./Section";
-import { FiExternalLink } from "react-icons/fi";
+import { FiExternalLink, FiArrowRight } from "react-icons/fi";
 
 export default function ProjectsSection() {
   const projects = data.projects;
@@ -84,6 +84,18 @@ export default function ProjectsSection() {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="mt-12 flex justify-center pointer-events-auto">
+        <a
+          href="https://github.com/UlissesE"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-foreground border border-border rounded-full hover:border-primary hover:text-primary transition-all font-medium group"
+        >
+          Ver mais
+          <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </a>
       </div>
     </Section>
   );

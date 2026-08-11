@@ -60,19 +60,16 @@ export default function AboutSection() {
               Engenharia de Software na{" "}
               <a
                 href="https://www.fiap.com.br/"
-                className="text-primary font-bold"
+                className="text-primary font-bold underline"
               >
                 FIAP
-              </a>
-              . Minha jornada começou com a curiosidade de entender como as
-              coisas funcionam "por trás dos panos".
+              </a> (4º semestre) e estagiando na <strong className="text-primary font-bold">BP Bioenergy</strong>, onde trabalho com desenvolvimento, automação e dados.
             </p>
+            <p className="text-lg md:text-2xl text-foreground leading-relaxed mb-4">
+              Minha jornada começou com a curiosidade de entender como as
+              coisas funcionam "por trás dos panos", e até hoje me fascino vendo as engrenagens girarem.</p>
             <p className="text-lg md:text-2xl text-foreground leading-relaxed">
-              Atualmente estou no{" "}
-              <strong className="text-primary">3º semestre</strong>, focado em
-              desenvolvimento full stack. Acredito que a melhor forma de
-              aprender é colocando a mão na massa, por isso estou sempre
-              trabalhando em projetos pessoais e buscando novos desafios.
+              Busco minha primeira oportunidade como desenvolvedor backend em um time que valorize boas práticas e evolução técnica constante.
             </p>
           </div>
         </motion.div>
@@ -88,11 +85,11 @@ export default function AboutSection() {
         </h4>
         <div className="flex flex-wrap gap-2">
           {[
-            "Next.js & TypeScript",
-            "Java & Python",
-            "Node.js & Express",
-            "PostgreSQL",
-            "AWS Cloud",
+            "Java & SpringBoot",
+            "Banco de Dados Oracle",
+            "Cloud & IA AWS Certification",
+            "Metodologias Ágeis",
+            "Dynamic Programming"
           ].map((tech) => (
             <span
               key={tech}

@@ -2,12 +2,15 @@ import { Code2, Server } from "lucide-react";
 import { AiOutlineTool } from "react-icons/ai";
 import { GoDatabase } from "react-icons/go";
 import { PiFileSql } from "react-icons/pi";
+import { FaAws, FaJava } from "react-icons/fa";
 import {
   SiGit,
   SiHtml5,
   SiJavascript,
   SiLinux,
+  SiMongodb,
   SiNodedotjs,
+  SiOracle,
   SiPostgresql,
   SiPostman,
   SiPython,
@@ -45,6 +48,7 @@ export default function TechStack() {
       color: "from-green-500/20 to-green-500/5",
       technologies: [
         { name: "Python", icon: <SiPython color="yellow"/> },
+        { name: "Java", icon: <FaJava color="orange"/> },
         { name: "REST APIs", icon: "🔌" },
         { name: "Node.js", icon: <SiNodedotjs color="darkgreen"/> },
       ],
@@ -55,6 +59,8 @@ export default function TechStack() {
       color: "from-blue-500/20 to-blue-500/5",
       technologies: [
         { name: "PostgreSQL", icon: <SiPostgresql color="#326790"/> },
+        { name: "MongoDB", icon: <SiMongodb color="#47A248"/> },
+        { name: "Oracle DB", icon: <SiOracle color="#F80000"/> },
         { name: "SQL", icon: <PiFileSql /> },
       ],
     },
@@ -65,6 +71,7 @@ export default function TechStack() {
       technologies: [
         { name: "Git", icon: <SiGit color="#f05133"/> },
         { name: "Linux", icon: <SiLinux color="black"/> },
+        { name: "AWS", icon: <FaAws color="#FF9900"/> },
         { name: "VS Code", icon: <VscCode color="cyan"/> },
         { name: "Postman", icon: <SiPostman color="#fe6c34"/> },
       ],

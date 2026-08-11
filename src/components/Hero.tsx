@@ -6,6 +6,17 @@ import GradientText from "./reactBits/GradientText";
 import eups from "../assets/images/EUPS.png";
 
 export default function Hero() {
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    id: string
+  ) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <section
       id="hero"
@@ -45,9 +56,9 @@ export default function Hero() {
         >
           <RotatingText
             texts={[
-              "Desenvolvedor Full Stack em formação",
+              "Desenvolvedor Full Stack",
+              "Criando experiências web performáticas",
               "Engenharia de Software",
-              "Happy coding!",
             ]}
             mainClassName="text-xl md:text-2xl text-muted-foreground overflow-hidden"
             staggerFrom={"last"}
@@ -60,7 +71,16 @@ export default function Hero() {
             rotationInterval={5000}
           />
         </motion.div>
-        <motion.div className="flex gap-6 justify-center mt-12 pointer-events-auto">
+        <motion.div className="flex flex-wrap gap-4 justify-center mt-12 pointer-events-auto">
+          <motion.a
+            onClick={(e) => handleScroll(e, "projetos")}
+            className="cursor-pointer flex items-center justify-center gap-2 px-8 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.1 }}
+          >
+            Ver Projetos
+          </motion.a>
           <motion.a
             href="https://github.com/UlissesE"
             target="_blank"
