@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Hamburger from "hamburger-react";
 import logo from "/logo.png";
 import { GrTechnology } from "react-icons/gr";
-import { BsTelephone } from "react-icons/bs";
 import { LuRocket, LuRoute, LuUserRound } from "react-icons/lu";
 
 export default function Navbar() {
@@ -38,7 +37,6 @@ export default function Navbar() {
     { name: "Tecnologias", href: "tecnologias", icon: <GrTechnology /> },
     { name: "Trajetória", href: "carreira", icon: <LuRoute /> },
     { name: "Projetos", href: "projetos", icon: <LuRocket /> },
-    { name: "Contato", href: "contato", icon: <BsTelephone /> },
   ];
 
   return (

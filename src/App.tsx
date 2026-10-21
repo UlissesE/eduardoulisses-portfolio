@@ -1,5 +1,4 @@
 import AboutSection from "./components/AboutSection.tsx";
-import { ContactSection } from "./components/ContactSection.tsx";
 import Footer from "./components/Footer.tsx";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar.tsx";
@@ -20,7 +19,6 @@ function App() {
       <TechStack />
       <CareerTimeline />
       <ProjectsSection />
-      <ContactSection />
       <Footer />
     </div>
   );
