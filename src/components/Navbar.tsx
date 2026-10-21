@@ -3,7 +3,7 @@ import Hamburger from "hamburger-react";
 import logo from "/logo.png";
 import { GrTechnology } from "react-icons/gr";
 import { BsTelephone } from "react-icons/bs";
-import { LuRocket, LuUserRound } from "react-icons/lu";
+import { LuRocket, LuRoute, LuUserRound } from "react-icons/lu";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,6 +36,7 @@ export default function Navbar() {
   const navItems = [
     { name: "Sobre", href: "sobre", icon: <LuUserRound /> },
     { name: "Tecnologias", href: "tecnologias", icon: <GrTechnology /> },
+    { name: "Trajetória", href: "carreira", icon: <LuRoute /> },
     { name: "Projetos", href: "projetos", icon: <LuRocket /> },
     { name: "Contato", href: "contato", icon: <BsTelephone /> },
   ];
@@ -48,6 +49,8 @@ export default function Navbar() {
     >
       <div className="relative max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <a
+          href="#hero"
+          aria-label="Ir para o topo"
           onClick={(e) => handleScroll(e, "hero")}
           className="flex items-center cursor-pointer"
         >
@@ -58,6 +61,7 @@ export default function Navbar() {
           {navItems.map((item) => (
             <li key={item.name} className="relative">
               <a
+                href={`#${item.href}`}
                 onClick={(e) => handleScroll(e, item.href)}
                 className="flex items-center gap-3 text-xl text-foreground hover:text-primary transition-colors duration-200 nav-line cursor-pointer"
               >
@@ -79,6 +83,7 @@ export default function Navbar() {
             {navItems.map((item) => (
               <li key={item.name} className="relative border p-4 rounded">
                 <a
+                  href={`#${item.href}`}
                   className="flex items-center gap-3 text-xl text-foreground hover:text-primary transition-colors duration-200 nav-line cursor-pointer"
                   onClick={(e) => {
                     setIsOpen(false);

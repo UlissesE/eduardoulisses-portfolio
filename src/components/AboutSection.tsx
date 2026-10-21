@@ -1,6 +1,6 @@
 import Section from "./Section";
 import image from "../assets/images/image.png";
-import { Gamepad2Icon, Trophy } from "lucide-react";
+import { BookOpen, Gamepad2Icon } from "lucide-react";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 
@@ -39,7 +39,7 @@ export default function AboutSection() {
             <div className="relative w-full aspect-square bg-primary/20 rounded-2xl border-2 border-primary/30 flex items-center justify-center overflow-hidden">
               <img
                 src={image}
-                alt=""
+                alt="Foto de Eduardo Ulisses"
                 className="h-full object-cover rounded-lg pointer-events-auto"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -60,6 +60,8 @@ export default function AboutSection() {
               Engenharia de Software na{" "}
               <a
                 href="https://www.fiap.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-primary font-bold underline"
               >
                 FIAP
@@ -127,7 +129,7 @@ export default function AboutSection() {
         >
           <div className="flex items-center gap-3 mb-3">
             <div className="p-3 bg-primary/10 rounded-lg">
-              <Trophy className="w-6 h-6 text-primary" />
+              <BookOpen className="w-6 h-6 text-primary" />
             </div>
             <h4 className="text-lg">Leitura</h4>
           </div>

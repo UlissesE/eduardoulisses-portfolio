@@ -11,7 +11,7 @@ import TechStack from "./components/TechStack.tsx";
 function App() {
   return (
     <div className="relative">
-      <div className="fixed inset-0 w-screen h-screen opacity-6/10 z-1 overflow-hidden">
+      <div className="fixed inset-0 w-screen h-screen opacity-60 z-1 overflow-hidden">
         <Squares speed={0.3} direction="diagonal" />
       </div>
       <Navbar />

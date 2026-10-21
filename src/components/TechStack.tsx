@@ -33,7 +33,7 @@ export default function TechStack() {
     {
       title: "Frontend",
       icon: <Code2 className="w-6 h-6" />,
-      color: "from-primary/20 to primary/5 ",
+      color: "from-primary/20 to-primary/5",
       technologies: [
         { name: "React", icon: <SiReact color="cyan"/> },
         { name: "TypeScript", icon: <SiTypescript color="#3179c6"/> },
@@ -50,7 +50,7 @@ export default function TechStack() {
         { name: "Python", icon: <SiPython color="yellow"/> },
         { name: "Java", icon: <FaJava color="orange"/> },
         { name: "REST APIs", icon: "🔌" },
-        { name: "Node.js", icon: <SiNodedotjs color="darkgreen"/> },
+        { name: "Node.js", icon: <SiNodedotjs color="#5fa04e"/> },
       ],
     },
     {
@@ -61,7 +61,7 @@ export default function TechStack() {
         { name: "PostgreSQL", icon: <SiPostgresql color="#326790"/> },
         { name: "MongoDB", icon: <SiMongodb color="#47A248"/> },
         { name: "Oracle DB", icon: <SiOracle color="#F80000"/> },
-        { name: "SQL", icon: <PiFileSql /> },
+        { name: "SQL", icon: <PiFileSql color="#00ff88"/> },
       ],
     },
     {
@@ -70,7 +70,7 @@ export default function TechStack() {
       color: "from-orange-500/20 to-orange-500/5",
       technologies: [
         { name: "Git", icon: <SiGit color="#f05133"/> },
-        { name: "Linux", icon: <SiLinux color="black"/> },
+        { name: "Linux", icon: <SiLinux color="white"/> },
         { name: "AWS", icon: <FaAws color="#FF9900"/> },
         { name: "VS Code", icon: <VscCode color="cyan"/> },
         { name: "Postman", icon: <SiPostman color="#fe6c34"/> },

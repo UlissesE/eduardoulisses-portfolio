@@ -5,7 +5,6 @@ import { FiExternalLink, FiArrowRight } from "react-icons/fi";
 
 export default function ProjectsSection() {
   const projects = data.projects;
-  console.log(projects);
   return (
     <Section
       id="projetos"
@@ -16,7 +15,7 @@ export default function ProjectsSection() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 pointer-events-auto">
         {projects.map((project) => (
           <div
-            key={project.title}
+            key={project.id}
             className="bg-card border border-border rounded-xl overflow-hidden hover:border-primary transition-all hover:shadow-lg hover:shadow-primary/10 group flex flex-col"
           >
             {/* Imagem do Projeto */}
