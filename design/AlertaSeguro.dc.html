@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Estudo de caso — Alerta Seguro</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#08090b}
+a{color:#e8c8a4}
+a:hover{color:#ffffff}
+.cs{--mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--line:#ffffff12;--line2:#ffffff24}
+.cs a{color:inherit;text-decoration:none}
+.cs h1,.cs h2,.cs h3{font-family:'Space Grotesk','DM Sans',system-ui,sans-serif}
+.cs a:focus-visible{outline:2px solid #e2c8a0;outline-offset:3px;border-radius:4px}
+.mono{font-family:var(--mono)}
+.back{color:#a9a59d;transition:color .2s}
+.back:hover{color:#f3f1ec}
+.stars{position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:radial-gradient(1px 1px at 15% 20%,#ccc 80%,transparent),radial-gradient(1px 1px at 79% 40%,#fff 80%,transparent),radial-gradient(1px 1px at 42% 70%,#aaa 80%,transparent);background-size:259px 241px,383px 311px,349px 367px}
+.orb{position:absolute;right:-120px;top:40px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle at 30% 20%,#5f6886,#181e2b 60%,#0a0d14);box-shadow:inset -40px -30px 80px #000c,0 0 120px rgba(var(--a),.18);animation:drift 12s ease-in-out infinite;pointer-events:none}
+.orb::after{content:"";position:absolute;inset:-16%;border:1px solid rgba(var(--a),.3);border-radius:50%;transform:rotate(-22deg) scaleY(.3)}
+@keyframes drift{50%{transform:translateY(-14px)}}
+.rise{animation:rise 1.1s cubic-bezier(.16,.8,.2,1) both}
+.r1{animation-delay:.1s}.r2{animation-delay:.25s}.r3{animation-delay:.45s}
+@keyframes rise{from{opacity:0;transform:translateY(22px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.lbl{font-family:var(--mono);font-size:12px;letter-spacing:1.2px;color:rgb(var(--a))}
+.lbl span{color:#8f959c}
+.sec{padding:90px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px 64px}
+.sec h2,.secw h2{margin:0;font-size:32px;line-height:1.15;font-weight:400;letter-spacing:-1.2px}
+.secw{padding:90px 0 0;display:flex;flex-direction:column;gap:28px}
+.body p{margin:0 0 14px;font-size:17px;line-height:1.8;color:#c3c0b9}
+.ph{color:rgb(var(--a))}
+.flow{min-width:760px;display:flex;align-items:center}
+.node{flex:1 1 0;min-width:0;border:1px solid var(--line2);border-radius:8px;padding:14px 16px;background:#121316;display:flex;flex-direction:column;gap:2px;transition:border-color .3s,background .3s}
+.node:hover{border-color:rgba(var(--a),.7);background:#10131c}
+.node .t{font-family:var(--mono);font-size:11px;color:#9aa0a6}
+.node .n{font-size:15px;font-weight:500}
+.node .d{font-size:13px;color:#a9a59d}
+.node.hl{border-color:rgba(var(--a),.6);background:#10131c}
+.wire{flex:0 0 96px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.wire .l{font-family:var(--mono);font-size:11px;color:rgb(var(--a));white-space:nowrap}
+.line{position:relative;width:100%;height:1px;background:linear-gradient(90deg,var(--line2),rgba(var(--a),.8),var(--line2))}
+.pk{position:absolute;top:-2px;left:0;width:5px;height:5px;border-radius:50%;background:#e4eaff;box-shadow:0 0 10px 2px rgba(var(--a),.9);animation:pk 2.6s cubic-bezier(.5,0,.5,1) infinite}
+.pk.b{animation-delay:1.3s}
+@keyframes pk{0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:calc(100% - 5px);opacity:0}}
+.sp{height:15px}
+.states{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:12px}
+.st{border:1px solid var(--line);border-radius:12px;padding:22px;background:#0e0f12;display:flex;flex-direction:column;gap:12px;transition:border-color .35s,transform .35s}
+.st:hover{transform:translateY(-3px)}
+.led{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:13px;letter-spacing:.08em}
+.led i{width:14px;height:14px;border-radius:50%}
+.led.g i{background:#6ee7aa;box-shadow:0 0 12px #6ee7aa}
+.led.y i{background:#f2c46b;box-shadow:0 0 12px #f2c46b;animation:pulse 1.6s ease-in-out infinite}
+.led.r i{background:#f0806e;box-shadow:0 0 16px #f0806e;animation:blinkr .5s steps(2) infinite}
+@keyframes pulse{50%{opacity:.45}}
+@keyframes blinkr{50%{opacity:.2}}
+.st h3{margin:0;font-size:19px;font-weight:500}
+.st p{margin:0;font-size:15px;line-height:1.7;color:#b5b1a9}
+.lcd{font-family:var(--mono);font-size:12px;background:#1b2a1d;color:#a8e6a3;border-radius:4px;padding:8px 10px;letter-spacing:.06em;line-height:1.5;border:1px solid #2d4630}
+.card{border:1px solid var(--line);border-radius:10px;padding:24px;background:#0e0f12;display:flex;flex-direction:column;gap:10px;transition:border-color .35s,transform .35s}
+.card:hover{border-color:rgba(var(--a),.5);transform:translateY(-3px)}
+.card .k{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:#9aa0a6}
+.card h3{margin:0;font-size:19px;font-weight:500}
+.card p{margin:0;font-size:15px;line-height:1.7;color:#b5b1a9}
+.res{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:18px}
+.res li{border-top:1px solid rgb(var(--a));padding-top:14px;display:flex;flex-direction:column;gap:4px}
+.res b{font-size:18px;font-weight:500}
+.res span{font-size:14px;color:#a9a59d}
+.btn{display:inline-flex;align-items:center;gap:14px;min-height:48px;padding:0 22px;border-radius:3px;background:#e8c8a4;border:1px solid #e3be94;color:#211b16 !important;font-weight:600;font-size:14px;transition:transform .25s,background .2s}
+.btn:hover{background:#ffdfbc;transform:translateY(-2px)}
+.btn .c{font-family:var(--mono)}
+.btn .c span{color:#6f5133}
+.obtn{display:inline-flex;align-items:center;min-height:46px;padding:0 18px;border:1px solid #ffffff28;border-radius:3px;font-size:14px;color:#e6e2da;transition:background-color .4s,border-color .4s}
+.obtn:hover{background:rgba(var(--a),.14);border-color:rgba(var(--a),.5)}
+@supports (animation-timeline: view()){
+  .reveal{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% cover 22%}
+  @keyframes reveal{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
+}
+@media(max-width:800px){.orb{width:300px;height:300px;right:-120px;top:20px;opacity:.6}}
+@media(prefers-reduced-motion:reduce){.cs *,.cs *::before,.cs *::after{animation:none !important;transition:none !important}.reveal,.rise{opacity:1 !important;transform:none !important;filter:none !important}}
+</style>
+</helmet>
+
+<div class="cs" style="--a: 150,168,224; background: #08090b; color: #f3f1ec; font-family: 'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased">
+
+<header style="position: sticky; top: 0; z-index: 50; background: rgba(8,9,11,.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid #ffffff0d">
+<nav aria-label="Estudo de caso" style="max-width: 1100px; margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap">
+<a href="Portfolio.dc.html" class="back mono" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 12px; letter-spacing: .12em">← VOLTAR AO PORTFÓLIO</a>
+<span class="mono" style="font-size: 12px; letter-spacing: .12em; color: #8f959c">missions/<span style="color: #d3bc9f">alerta-seguro.ino</span> · MISSÃO 04</span>
+</nav>
+</header>
+
+<section aria-labelledby="cs-h1" style="position: relative; overflow: hidden; border-bottom: 1px solid #ffffff0d">
+<div class="stars" aria-hidden="true"></div>
+<div class="orb" aria-hidden="true"></div>
+<div style="position: relative; max-width: 1100px; margin: 0 auto; padding: 100px 24px 72px; box-sizing: border-box; display: flex; flex-direction: column; gap: 26px">
+<p class="lbl rise r1" style="margin: 0"><span>// </span>IOT · EMBARCADO · ACADÊMICO · 2025</p>
+<h1 id="cs-h1" class="rise r2" style="margin: 0; font-size: clamp(48px, 7.4vw, 104px); line-height: .95; font-weight: 500; letter-spacing: -.055em">Alerta Seguro<span style="color: rgb(var(--a))">.</span></h1>
+<p class="rise r3" style="margin: 0; max-width: 680px; font-size: clamp(18px, 2vw, 21px); line-height: 1.6; color: #c9c5bd; font-weight: 300">Um dispositivo que vigia o nível da água e avisa antes do alagamento — com decisão tomada no próprio hardware, sem depender de internet.</p>
+<dl class="rise r3" style="margin: 14px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 1px; background: #ffffff16; border: 1px solid #ffffff16; border-radius: 8px; overflow: hidden">
+<div style="background: rgba(14,15,18,.92); padding: 16px 20px; display: flex; flex-direction: column; gap: 4px"><dt class="mono" style="font-size: 12px; color: #9aa0a6">tipo</dt><dd style="margin: 0; font-size: 15px">Acadêmico · 2025</dd></div>
+<div style="background: rgba(14,15,18,.92); padding: 16px 20px; display: flex; flex-direction: column; gap: 4px"><dt class="mono" style="font-size: 12px; color: #9aa0a6">status</dt><dd style="margin: 0; font-size: 15px; color: #b5c8a1">● concluído</dd></div>
+<div style="background: rgba(14,15,18,.92); padding: 16px 20px; display: flex; flex-direction: column; gap: 4px"><dt class="mono" style="font-size: 12px; color: #9aa0a6">meu papel</dt><dd style="margin: 0; font-size: 15px" class="ph">[Individual ou em grupo? O que você fez]</dd></div>
+<div style="background: rgba(14,15,18,.92); padding: 16px 20px; display: flex; flex-direction: column; gap: 4px"><dt class="mono" style="font-size: 12px; color: #9aa0a6">código</dt><dd style="margin: 0; font-size: 15px"><a href="https://github.com/GS-Alerta-Seguro" style="border-bottom: 1px solid #ffffff30">GS-Alerta-Seguro ↗</a></dd></div>
+</dl>
+</div>
+</section>
+
+<div style="max-width: 1100px; margin: 0 auto; padding: 0 24px; box-sizing: border-box">
+
+<section class="sec reveal" aria-labelledby="h-01">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>01 · CONTEXTO</p><h2 id="h-01">Enchente avisa — se alguém estiver medindo</h2></div>
+<div class="body">
+<p>Alagamentos atingem com mais força as áreas urbanas vulneráveis, e o aviso costuma chegar tarde. O projeto ataca o problema em três frentes: conscientização, detecção e prevenção.</p>
+<p>O centro da solução é um dispositivo Arduino que monitora em tempo real o nível da água, a temperatura e a umidade, identifica situações de risco e emite alertas visuais e sonoros. Em volta dele, um site educativo com quiz e uma aplicação Python que simula o funcionamento do dispositivo.</p>
+</div>
+</section>
+
+<section class="secw reveal" aria-labelledby="h-02">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>02 · ARQUITETURA</p><h2 id="h-02">Leitura, decisão e alerta no mesmo lugar</h2></div>
+<figure style="margin: 0; border: 1px solid var(--line); border-radius: 12px; background: #0b0c0e; overflow: hidden">
+<div style="overflow-x: auto">
+<div style="padding: 40px 28px 24px; display: flex; flex-direction: column; gap: 22px; min-width: 760px; box-sizing: border-box">
+<div class="flow">
+<div class="node"><span class="t">sensores</span><span class="n">Nível da água</span><span class="d">+ temperatura · umidade</span></div>
+<div class="wire" aria-hidden="true"><span class="l">leitura</span><div class="line"><i class="pk"></i><i class="pk b"></i></div><span class="sp"></span></div>
+<div class="node hl"><span class="t" style="color: rgb(var(--a))">controle</span><span class="n">Arduino</span><span class="d">classifica o risco</span></div>
+<div class="wire" aria-hidden="true"><span class="l">decide</span><div class="line"><i class="pk"></i></div><span class="sp"></span></div>
+<div class="node"><span class="t">saídas</span><span class="n">LEDs · buzzer · LCD</span><span class="d">alerta visual e sonoro</span></div>
+</div>
+<div class="mono" style="border: 1px dashed var(--line2); border-radius: 8px; padding: 10px 16px; font-size: 12px; color: #9aa0a6; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px"><span>ecossistema · simulação em Python · site educativo com quiz</span><span>HTML · CSS · JavaScript</span></div>
+</div>
+</div>
+<figcaption class="mono" style="padding: 12px 28px 16px; font-size: 12px; color: #8f959c; border-top: 1px solid var(--line)">Fig. 1 — A decisão acontece no dispositivo: sem rede, o alerta continua funcionando.</figcaption>
+</figure>
+</section>
+
+<section class="secw reveal" aria-labelledby="h-03">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>03 · ESTADOS DO SISTEMA</p><h2 id="h-03">Três estados, leitura imediata</h2></div>
+<div class="states">
+<div class="st"><span class="led g"><i aria-hidden="true"></i>NORMAL</span><h3>Tudo sob controle</h3><p>Nível da água dentro da faixa segura. <span class="ph">[limite]</span></p><div class="lcd" aria-hidden="true">NIVEL: OK<br>T:[--]C  U:[--]%</div></div>
+<div class="st"><span class="led y"><i aria-hidden="true"></i>ATENÇÃO</span><h3>Água subindo</h3><p>Aproximando do limite de risco. <span class="ph">[limite e comportamento do buzzer]</span></p><div class="lcd" aria-hidden="true">NIVEL: ATENCAO<br>T:[--]C  U:[--]%</div></div>
+<div class="st" style="border-color: #f0806e55"><span class="led r"><i aria-hidden="true"></i>CRÍTICO</span><h3>Risco de alagamento</h3><p>Alerta visual e sonoro máximo. <span class="ph">[limite]</span></p><div class="lcd" aria-hidden="true" style="background: #2a1717; color: #f3a99b; border-color: #4a2626">NIVEL: CRITICO<br>EVACUAR AREA</div></div>
+</div>
+<p class="mono" style="margin: 0; font-size: 12px; color: #8f959c">[Mensagens do LCD ilustrativas — trocar pelas reais do projeto.]</p>
+</section>
+
+<section class="secw reveal" aria-labelledby="h-04">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>04 · DECISÕES</p><h2 id="h-04">Decisões e desafios</h2></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 14px">
+<article class="card"><span class="k">DECISÃO</span><h3>Decisão embarcada</h3><p>A lógica de risco roda no Arduino, então o alerta não depende de conexão.</p></article>
+<article class="card"><span class="k">DECISÃO</span><h3>Simular antes do hardware</h3><p>Uma aplicação Python reproduz o comportamento do dispositivo. <span class="ph">[Por quê? Testar sem montar o circuito?]</span></p></article>
+<article class="card" style="border-color: rgba(var(--a),.35)"><span class="k" style="color: rgb(var(--a))">DESAFIO</span><h3 class="ph">[O que deu mais trabalho]</h3><p>Ex.: calibrar o sensor de nível, evitar falsos alarmes.</p></article>
+</div>
+</section>
+
+<section class="secw reveal" aria-labelledby="h-05">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>05 · RESULTADO</p><h2 id="h-05">O que o projeto entrega</h2></div>
+<ul class="res">
+<li><b>Detecção em tempo real</b><span>Nível da água, temperatura e umidade.</span></li>
+<li><b>Alerta em três níveis</b><span>LEDs, buzzer e LCD com resposta imediata.</span></li>
+<li><b>Conscientização</b><span>Site educativo com quiz sobre enchentes.</span></li>
+</ul>
+<div style="aspect-ratio: 16 / 7; border: 1px dashed #ffffff30; border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; text-align: center; background: repeating-linear-gradient(135deg, #ffffff05 0 10px, transparent 10px 20px)">
+<p class="mono" style="margin: 0; font-size: 13px; color: #9aa0a6; max-width: 440px">[Foto do circuito ou print da simulação]</p>
+</div>
+<p class="body ph" style="margin: 0; font-size: 17px">[O que você faria diferente: ex. enviar os alertas também por rede, registrar histórico das leituras.]</p>
+</section>
+
+<nav aria-label="Navegação entre missões" class="reveal" style="margin: 110px 0 0; padding: 36px 0 90px; border-top: 1px solid #ffffff12; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+<a href="Portfolio.dc.html" class="back mono" style="font-size: 12px; letter-spacing: .12em; min-height: 44px; display: inline-flex; align-items: center">← TODAS AS MISSÕES</a>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a href="DashFlow.dc.html" class="obtn">← Anterior: DashFlow</a>
+<a href="Portfolio.dc.html" class="btn"><span class="c">voltarAoSistemaSolar<span>()</span></span> ↑</a>
+</div>
+</nav>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4300}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

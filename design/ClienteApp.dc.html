@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Estudo de caso — ClienteApp</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#08090b}
+a{color:#e8c8a4}
+a:hover{color:#ffffff}
+.cs{--mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--line:#ffffff12;--line2:#ffffff24}
+.cs a{color:inherit;text-decoration:none}
+.cs h1,.cs h2,.cs h3{font-family:'Space Grotesk','DM Sans',system-ui,sans-serif}
+.cs a:focus-visible{outline:2px solid #e2c8a0;outline-offset:3px;border-radius:4px}
+.mono{font-family:var(--mono)}
+.back{color:#a9a59d;transition:color .2s}
+.back:hover{color:#f3f1ec}
+.stars{position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:radial-gradient(1px 1px at 15% 20%,#ccc 80%,transparent),radial-gradient(1px 1px at 79% 40%,#fff 80%,transparent),radial-gradient(1px 1px at 42% 70%,#aaa 80%,transparent);background-size:259px 241px,383px 311px,349px 367px}
+.orb{position:absolute;right:-120px;top:40px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle at 30% 20%,#9a7a55,#2a2018 60%,#110e0b);box-shadow:inset -40px -30px 80px #000c,0 0 120px rgba(var(--a),.18);animation:drift 12s ease-in-out infinite;pointer-events:none}
+.orb::after{content:"";position:absolute;inset:-16%;border:1px solid rgba(var(--a),.3);border-radius:50%;transform:rotate(-22deg) scaleY(.3)}
+@keyframes drift{50%{transform:translateY(-14px)}}
+.rise{animation:rise 1.1s cubic-bezier(.16,.8,.2,1) both}
+.r1{animation-delay:.1s}.r2{animation-delay:.25s}.r3{animation-delay:.45s}
+@keyframes rise{from{opacity:0;transform:translateY(22px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.lbl{font-family:var(--mono);font-size:12px;letter-spacing:1.2px;color:rgb(var(--a))}
+.lbl span{color:#8f959c}
+.sec{padding:90px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px 64px}
+.sec h2,.secw h2{margin:0;font-size:32px;line-height:1.15;font-weight:400;letter-spacing:-1.2px}
+.secw{padding:90px 0 0;display:flex;flex-direction:column;gap:28px}
+.body p{margin:0 0 14px;font-size:17px;line-height:1.8;color:#c3c0b9}
+.ph{color:rgb(var(--a))}
+.node{border:1px solid var(--line2);border-radius:8px;padding:12px 16px;background:#121316;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:border-color .3s,background .3s}
+.node:hover{border-color:rgba(var(--a),.7);background:#17130e}
+.node .t{font-family:var(--mono);font-size:13px;color:#f3f1ec}
+.node .d{font-size:14px;color:#a9a59d}
+.vw{position:relative;width:1px;height:30px;margin-left:30px;background:linear-gradient(180deg,var(--line2),rgba(var(--a),.8),var(--line2))}
+.vw i{position:absolute;left:-2px;top:0;width:5px;height:5px;border-radius:50%;background:#ffe0b8;box-shadow:0 0 10px 2px rgba(var(--a),.9);animation:vpk 2.2s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes vpk{0%{top:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:calc(100% - 5px);opacity:0}}
+.tbl{width:100%;min-width:680px;border-collapse:collapse;font-size:15px}
+.tbl th{text-align:left;padding:14px 18px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:#9aa0a6;font-weight:500;border-bottom:1px solid var(--line);background:#0e0f12}
+.tbl td{padding:14px 18px;border-bottom:1px solid #ffffff0b;color:#c3c0b9;vertical-align:top}
+.tbl td:first-child{font-family:var(--mono);color:#f3f1ec}
+.tbl tr:last-child td{border-bottom:0}
+.card{border:1px solid var(--line);border-radius:10px;padding:24px;background:#0e0f12;display:flex;flex-direction:column;gap:10px;transition:border-color .35s,transform .35s}
+.card:hover{border-color:rgba(var(--a),.5);transform:translateY(-3px)}
+.card .k{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:#9aa0a6}
+.card h3{margin:0;font-size:19px;font-weight:500}
+.card p{margin:0;font-size:15px;line-height:1.7;color:#b5b1a9}
+.res{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:18px}
+.res li{border-top:1px solid rgb(var(--a));padding-top:14px;display:flex;flex-direction:column;gap:4px}
+.res b{font-size:18px;font-weight:500}
+.res span{font-size:14px;color:#a9a59d}
+.btn{display:inline-flex;align-items:center;gap:14px;min-height:48px;padding:0 22px;border-radius:3px;background:#e8c8a4;border:1px solid #e3be94;color:#211b16 !important;font-weight:600;font-size:14px;transition:transform .25s,background .2s}
+.btn:hover{background:#ffdfbc;transform:translateY(-2px)}
+.btn .c{font-family:var(--mono)}
+.btn .c span{color:#6f5133}
+.obtn{display:inline-flex;align-items:center;min-height:46px;padding:0 18px;border:1px solid #ffffff28;border-radius:3px;font-size:14px;color:#e6e2da;transition:background-color .4s,border-color .4s}
+.obtn:hover{background:rgba(var(--a),.14);border-color:rgba(var(--a),.5)}
+@supports (animation-timeline: view()){
+  .reveal{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% cover 22%}
+  @keyframes reveal{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
+}
+@media(max-width:800px){.orb{width:300px;height:300px;right:-120px;top:20px;opacity:.6}}
+@media(prefers-reduced-motion:reduce){.cs *,.cs *::before,.cs *::after{animation:none !important;transition:none !important}.reveal,.rise{opacity:1 !important;transform:none !important;filter:none !important}}
+</style>
+</helmet>
+
+<div class="cs" style="--a: 199,164,119; background: #08090b; color: #f3f1ec; font-family: 'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased">
+
+<header style="position: sticky; top: 0; z-index: 50; background: rgba(8,9,11,.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid #ffffff0d">
+<nav aria-label="Estudo de caso" style="max-width: 1100px; margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap">
+<a href="Portfolio.dc.html" class="back mono" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 12px; letter-spacing: .12em">← VOLTAR AO PORTFÓLIO</a>
+<span class="mono" style="font-size: 12px; letter-spacing: .12em; color: #8f959c">missions/<span style="color: #d3bc9f">clienteapp.java</span> · MISSÃO 02</span>
+</nav>
+</header>
+
+<section aria-labelledby="cs-h1" style="position: relative; overflow: hidden; border-bottom: 1px solid #ffffff0d">
+<div class="stars" aria-hidden="true"></div>
+<div class="orb" aria-hidden="true"></div>
+<div style="position: relative; max-width: 1100px; margin: 0 auto; padding: 100px 24px 72px; box-sizing: border-box; display: flex; flex-direction: column; gap: 26px">
+<p class="lbl rise r1" style="margin: 0"><span>// </span>BACK-END · JAVA · PESSOAL · 2026</p>
+<h1 id="cs-h1" class="rise r2" style="margin: 0; font-size: clamp(48px, 7.4vw, 104px); line-height: .95; font-weight: 500; letter-spacing: -.055em">ClienteApp<span style="color: rgb(var(--a))">.</span></h1>
+<p class="rise r3" style="margin: 0; max-width: 660px; font-size: clamp(18px, 2vw, 21px); line-height: 1.6; color: #c9c5bd; font-weight: 300">Um CRUD de clientes em Java 17 puro — sem framework, de propósito. A pergunta por trás do projeto: eu entendo o que o Spring Boot faz por mim antes de deixar que ele faça?</p>
+<dl class="rise r3" style="margin: 14px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 1px; background: #ffffff16; border: 1px solid #ffffff16; border-radius: 8px; overflow: hidden">
+<div style="background: rgba(14,15,18,.92); padding: 16px 20px; display: flex; flex-direction: column; gap: 4px"><dt class="mono" style="font-size: 12px; color: #9aa0a6">tipo</dt><dd style="margin: 0; font-size: 15px">Projeto pessoal · 2026</dd></div>
+<div style="background: rgba(14,15,18,.92); padding: 16px 20px; display: flex; flex-direction: column; gap: 4px"><dt class="mono" style="font-size: 12px; color: #9aa0a6">status</dt><dd style="margin: 0; font-size: 15px; color: #b5c8a1">● concluído</dd></div>
+<div style="background: rgba(14,15,18,.92); padding: 16px 20px; display: flex; flex-direction: column; gap: 4px"><dt class="mono" style="font-size: 12px; color: #9aa0a6">stack</dt><dd style="margin: 0; font-size: 15px">Java 17 · sem dependências</dd></div>
+<div style="background: rgba(14,15,18,.92); padding: 16px 20px; display: flex; flex-direction: column; gap: 4px"><dt class="mono" style="font-size: 12px; color: #9aa0a6">código</dt><dd style="margin: 0; font-size: 15px"><a href="https://github.com/UlissesE/clienteapp" style="border-bottom: 1px solid #ffffff30">UlissesE/clienteapp ↗</a></dd></div>
+</dl>
+</div>
+</section>
+
+<div style="max-width: 1100px; margin: 0 auto; padding: 0 24px; box-sizing: border-box">
+
+<section class="sec reveal" aria-labelledby="h-01">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>01 · CONTEXTO</p><h2 id="h-01">Fundamentos antes do framework</h2></div>
+<div class="body">
+<p>Frameworks como o Spring Boot resolvem muita coisa automaticamente: injeção de dependência, persistência, tratamento de erros. Antes de delegar isso, quis provar que conseguia construir cada peça à mão.</p>
+<p>O resultado é um sistema de cadastro de clientes com dois tipos — Pessoa Física (CPF) e Pessoa Jurídica (CNPJ) — com CRUD completo, validações e persistência entre execuções, usando só a biblioteca padrão do Java.</p>
+<p class="ph">[Opcional: o que te motivou — uma disciplina, uma vaga, uma dúvida específica sobre Spring?]</p>
+</div>
+</section>
+
+<section class="secw reveal" aria-labelledby="h-02">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>02 · ARQUITETURA</p><h2 id="h-02">Camadas que espelham um app Spring Boot</h2></div>
+<figure style="margin: 0; border: 1px solid var(--line); border-radius: 12px; background: #0b0c0e; padding: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 32px; align-items: center">
+<div style="display: flex; flex-direction: column">
+<div class="node"><span class="t">ui</span><span class="d">menu de console · entrada e saída</span></div>
+<div class="vw" aria-hidden="true"><i></i></div>
+<div class="node"><span class="t">service</span><span class="d">regras · validações · relatórios</span></div>
+<div class="vw" aria-hidden="true"><i style="animation-delay: .6s"></i></div>
+<div class="node"><span class="t">repository</span><span class="d">leitura e escrita</span></div>
+<div class="vw" aria-hidden="true"><i style="animation-delay: 1.2s"></i></div>
+<div class="node" style="border-style: dashed"><span class="t">arquivo</span><span class="d">serialização binária</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div class="node" style="border-color: rgba(var(--a),.6); background: #17130e; flex-direction: column; align-items: flex-start; gap: 10px; padding: 20px">
+<span class="t" style="color: rgb(var(--a))">model</span>
+<span class="d">Usado por todas as camadas</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span class="mono" style="padding: 6px 10px; border: 1px solid var(--line2); border-radius: 4px; font-size: 12px">Cliente</span>
+<span class="mono" style="padding: 6px 10px; border: 1px solid var(--line2); border-radius: 4px; font-size: 12px">Pessoa Física · CPF</span>
+<span class="mono" style="padding: 6px 10px; border: 1px solid var(--line2); border-radius: 4px; font-size: 12px">Pessoa Jurídica · CNPJ</span>
+</div>
+</div>
+<p class="mono" style="margin: 0; font-size: 12px; color: #9aa0a6; line-height: 1.8">Equivalência no Spring:<br>service → @Service · repository → @Repository<br>exceções → @ControllerAdvice</p>
+</div>
+<figcaption class="mono" style="grid-column: 1 / -1; font-size: 12px; color: #8f959c">Fig. 1 — Uma requisição desce pelas camadas; cada uma só conhece a de baixo.</figcaption>
+</figure>
+<div style="overflow-x: auto; border: 1px solid var(--line); border-radius: 10px">
+<table class="tbl">
+<caption class="mono" style="text-align: left; padding: 0 0 12px; font-size: 12px; letter-spacing: .12em; color: #9aa0a6; caption-side: top">CAMADAS E RESPONSABILIDADES</caption>
+<thead><tr><th scope="col">CAMADA</th><th scope="col">RESPONSABILIDADE</th><th scope="col">POR QUE ASSIM</th></tr></thead>
+<tbody>
+<tr><td>ui</td><td>Menu de console; traduz a entrada do usuário em chamadas ao service</td><td>Interface trocável sem tocar nas regras</td></tr>
+<tr><td>service</td><td>Regras de negócio, validações, unicidade de CPF/CNPJ, relatórios com Stream API</td><td>Concentra o que o sistema decide</td></tr>
+<tr><td>repository</td><td>Persistência dos clientes entre execuções</td><td class="ph">[Por que serialização binária e não CSV ou JSON?]</td></tr>
+<tr><td>model</td><td>Cliente, Pessoa Física e Pessoa Jurídica</td><td class="ph">[Herança ou composição entre PF e PJ? Por quê?]</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="secw reveal" aria-labelledby="h-03">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>03 · DECISÕES</p><h2 id="h-03">Decisões e desafios</h2></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 14px">
+<article class="card"><span class="k">DECISÃO</span><h3>Sem framework</h3><p>Cada responsabilidade que o Spring automatiza foi escrita à mão, para entender o que acontece por baixo.</p></article>
+<article class="card"><span class="k">DECISÃO</span><h3>Exceções customizadas</h3><p>Cada regra de negócio violada tem sua própria exceção, em vez de erros genéricos.</p></article>
+<article class="card"><span class="k">DECISÃO</span><h3>Soft delete</h3><p>Clientes removidos são marcados, não apagados. <span class="ph">[Por quê? Histórico, auditoria, reativação?]</span></p></article>
+<article class="card" style="border-color: rgba(var(--a),.35)"><span class="k" style="color: rgb(var(--a))">DESAFIO</span><h3 class="ph">[O que deu mais trabalho e como resolveu]</h3><p>Ex.: garantir unicidade entre PF e PJ, versionar o arquivo serializado. É a parte que tech leads mais leem.</p></article>
+</div>
+</section>
+
+<section class="secw reveal" aria-labelledby="h-04">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>04 · RESULTADO</p><h2 id="h-04">O que o sistema entrega</h2></div>
+<ul class="res">
+<li><b>CRUD completo</b><span>Para Pessoa Física e Pessoa Jurídica.</span></li>
+<li><b>Integridade</b><span>Validações e unicidade de CPF/CNPJ.</span></li>
+<li><b>Relatórios</b><span>Consultas e agregações com Stream API.</span></li>
+<li><b>Persistência</b><span>Dados mantidos entre execuções.</span></li>
+</ul>
+<div style="aspect-ratio: 16 / 7; border: 1px dashed #ffffff30; border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; text-align: center; background: repeating-linear-gradient(135deg, #ffffff05 0 10px, transparent 10px 20px)">
+<p class="mono" style="margin: 0; font-size: 13px; color: #9aa0a6; max-width: 440px">[Print ou GIF do menu de console em uso: cadastro, listagem e um relatório]</p>
+</div>
+</section>
+
+<section class="sec reveal" aria-labelledby="h-05">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>05 · PRÓXIMOS PASSOS</p><h2 id="h-05">O que eu faria diferente</h2></div>
+<div class="body"><p class="ph">[Sua reflexão. Ex.: migrar para Spring Boot + JPA e comparar; adicionar testes com JUnit; expor o service como API REST.]</p></div>
+</section>
+
+<nav aria-label="Navegação entre missões" class="reveal" style="margin: 110px 0 0; padding: 36px 0 90px; border-top: 1px solid #ffffff12; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+<a href="Portfolio.dc.html" class="back mono" style="font-size: 12px; letter-spacing: .12em; min-height: 44px; display: inline-flex; align-items: center">← TODAS AS MISSÕES</a>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a href="CaseStudy.dc.html" class="obtn">← Anterior: Wine Cellar</a>
+<a href="DashFlow.dc.html" class="obtn">Próxima: DashFlow →</a>
+<a href="https://github.com/UlissesE/clienteapp" class="btn"><span class="c">verCódigo<span>()</span></span> ↗</a>
+</div>
+</nav>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4300}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

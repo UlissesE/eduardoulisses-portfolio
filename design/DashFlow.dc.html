@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Estudo de caso — DashFlow</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#08090b}
+a{color:#e8c8a4}
+a:hover{color:#ffffff}
+.cs{--mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--line:#ffffff12;--line2:#ffffff24}
+.cs a{color:inherit;text-decoration:none}
+.cs h1,.cs h2,.cs h3{font-family:'Space Grotesk','DM Sans',system-ui,sans-serif}
+.cs a:focus-visible{outline:2px solid #e2c8a0;outline-offset:3px;border-radius:4px}
+.mono{font-family:var(--mono)}
+.back{color:#a9a59d;transition:color .2s}
+.back:hover{color:#f3f1ec}
+.stars{position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:radial-gradient(1px 1px at 15% 20%,#ccc 80%,transparent),radial-gradient(1px 1px at 79% 40%,#fff 80%,transparent),radial-gradient(1px 1px at 42% 70%,#aaa 80%,transparent);background-size:259px 241px,383px 311px,349px 367px}
+.orb{position:absolute;right:-120px;top:40px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle at 30% 20%,#5a8a80,#132e2a 60%,#091411);box-shadow:inset -40px -30px 80px #000c,0 0 120px rgba(var(--a),.18);animation:drift 12s ease-in-out infinite;pointer-events:none}
+.orb::after{content:"";position:absolute;inset:-16%;border:1px solid rgba(var(--a),.3);border-radius:50%;transform:rotate(-22deg) scaleY(.3)}
+@keyframes drift{50%{transform:translateY(-14px)}}
+.rise{animation:rise 1.1s cubic-bezier(.16,.8,.2,1) both}
+.r1{animation-delay:.1s}.r2{animation-delay:.25s}.r3{animation-delay:.45s}
+@keyframes rise{from{opacity:0;transform:translateY(22px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.lbl{font-family:var(--mono);font-size:12px;letter-spacing:1.2px;color:rgb(var(--a))}
+.lbl span{color:#8f959c}
+.live{display:inline-block;width:7px;height:7px;border-radius:50%;background:#8fc1ea;margin-right:8px;vertical-align:1px;animation:live 2.2s ease-in-out infinite}
+@keyframes live{0%,100%{box-shadow:0 0 0 0 #8fc1ea88}60%{box-shadow:0 0 0 6px #8fc1ea00}}
+.sec{padding:90px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px 64px}
+.sec h2,.secw h2{margin:0;font-size:32px;line-height:1.15;font-weight:400;letter-spacing:-1.2px}
+.secw{padding:90px 0 0;display:flex;flex-direction:column;gap:28px}
+.body p{margin:0 0 14px;font-size:17px;line-height:1.8;color:#c3c0b9}
+.ph{color:rgb(var(--a))}
+.flow{min-width:900px;display:flex;align-items:center}
+.node{flex:1 1 0;min-width:0;border:1px solid var(--line2);border-radius:8px;padding:14px 16px;background:#121316;display:flex;flex-direction:column;gap:2px;transition:border-color .3s,background .3s}
+.node:hover{border-color:rgba(var(--a),.7);background:#0f1715}
+.node .t{font-family:var(--mono);font-size:11px;color:#9aa0a6}
+.node .n{font-size:15px;font-weight:500}
+.node .d{font-size:13px;color:#a9a59d}
+.node.hl{border-color:rgba(var(--a),.6);background:#0f1715}
+.wire{flex:0 0 84px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.wire .l{font-family:var(--mono);font-size:11px;color:rgb(var(--a));white-space:nowrap}
+.line{position:relative;width:100%;height:1px;background:linear-gradient(90deg,var(--line2),rgba(var(--a),.8),var(--line2))}
+.pk{position:absolute;top:-2px;left:0;width:5px;height:5px;border-radius:50%;background:#dff7f0;box-shadow:0 0 10px 2px rgba(var(--a),.9);animation:pk 2.6s cubic-bezier(.5,0,.5,1) infinite}
+.pk.b{animation-delay:1.3s}
+@keyframes pk{0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:calc(100% - 5px);opacity:0}}
+.sp{height:15px}
+.tbl{width:100%;min-width:680px;border-collapse:collapse;font-size:15px}
+.tbl th{text-align:left;padding:14px 18px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:#9aa0a6;font-weight:500;border-bottom:1px solid var(--line);background:#0e0f12}
+.tbl td{padding:14px 18px;border-bottom:1px solid #ffffff0b;color:#c3c0b9;vertical-align:top}
+.tbl td:first-child{color:#f3f1ec;font-weight:500}
+.tbl tr:last-child td{border-bottom:0}
+.card{border:1px solid var(--line);border-radius:10px;padding:24px;background:#0e0f12;display:flex;flex-direction:column;gap:10px;transition:border-color .35s,transform .35s}
+.card:hover{border-color:rgba(var(--a),.5);transform:translateY(-3px)}
+.card .k{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:#9aa0a6}
+.card h3{margin:0;font-size:19px;font-weight:500}
+.card p{margin:0;font-size:15px;line-height:1.7;color:#b5b1a9}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{padding:6px 10px;border:1px solid var(--line2);border-radius:4px;font-family:var(--mono);font-size:12px;color:#c9c5bd}
+.phase{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:12px}
+.phase li{border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;background:#0e0f12}
+.phase li.now{border-color:rgba(var(--a),.6);background:linear-gradient(120deg,rgba(var(--a),.1),transparent)}
+.phase .k{font-family:var(--mono);font-size:12px;color:#9aa0a6}
+.phase li.now .k{color:rgb(var(--a))}
+.phase b{font-size:16px;font-weight:500}
+.phase span.d{font-size:14px;color:#a9a59d}
+.btn{display:inline-flex;align-items:center;gap:14px;min-height:48px;padding:0 22px;border-radius:3px;background:#e8c8a4;border:1px solid #e3be94;color:#211b16 !important;font-weight:600;font-size:14px;transition:transform .25s,background .2s}
+.btn:hover{background:#ffdfbc;transform:translateY(-2px)}
+.btn .c{font-family:var(--mono)}
+.btn .c span{color:#6f5133}
+.obtn{display:inline-flex;align-items:center;min-height:46px;padding:0 18px;border:1px solid #ffffff28;border-radius:3px;font-size:14px;color:#e6e2da;transition:background-color .4s,border-color .4s}
+.obtn:hover{background:rgba(var(--a),.14);border-color:rgba(var(--a),.5)}
+@supports (animation-timeline: view()){
+  .reveal{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% cover 22%}
+  @keyframes reveal{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
+}
+@media(max-width:800px){.orb{width:300px;height:300px;right:-120px;top:20px;opacity:.6}}
+@media(prefers-reduced-motion:reduce){.cs *,.cs *::before,.cs *::after{animation:none !important;transition:none !important}.reveal,.rise{opacity:1 !important;transform:none !important;filter:none !important}}
+</style>
+</helmet>
+
+<div class="cs" style="--a: 129,178,165; background: #08090b; color: #f3f1ec; font-family: 'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased">
+
+<header style="position: sticky; top: 0; z-index: 50; background: rgba(8,9,11,.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid #ffffff0d">
+<nav aria-label="Estudo de caso" style="max-width: 1100px; margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap">
+<a href="Portfolio.dc.html" class="back mono" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 12px; letter-spacing: .12em">← VOLTAR AO PORTFÓLIO</a>
+<span class="mono" style="font-size: 12px; letter-spacing: .12em; color: #8f959c">missions/<span style="color: #d3bc9f">dashflow.java</span> · MISSÃO 03</span>
+</nav>
+</header>
+
+<section aria-labelledby="cs-h1" style="position: relative; overflow: hidden; border-bottom: 1px solid #ffffff0d">
+<div class="stars" aria-hidden="true"></div>
+<div class="orb" aria-hidden="true"></div>
+<div style="position: relative; max-width: 1100px; margin: 0 auto; padding: 100px 24px 72px; box-sizing: border-box; display: flex; flex-direction: column; gap: 26px">
+<p class="lbl rise r1" style="margin: 0"><span>// </span>SAAS B2B · DDD · ACADÊMICO EM GRUPO · 2026</p>
+<h1 id="cs-h1" class="rise r2" style="margin: 0; font-size: clamp(48px, 7.4vw, 104px); line-height: .95; font-weight: 500; letter-spacing: -.055em">DashFlow<span style="color: rgb(var(--a))">.</span></h1>
+<p class="rise r3" style="margin: 0; max-width: 680px; font-size: clamp(18px, 2vw, 21px); line-height: 1.6; color: #c9c5bd; font-weight: 300">Uma plataforma que analisa transcrições de reuniões de vendas com IA e devolve sinais acionáveis — como risco de churn e produtos TOTVS mencionados — para o time comercial.</p>
+<dl class="rise r3" style="margin: 14px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 1px; background: #ffffff16; border: 1px solid #ffffff16; border-radius: 8px; overflow: hidden">
+<div style="background: rgba(14,15,18,.92); padding: 16px 20px; display: flex; flex-direction: column; gap: 4px"><dt class="mono" style="font-size: 12px; color: #9aa0a6">tipo</dt><dd style="margin: 0; font-size: 15px">Acadêmico · em grupo · FIAP</dd></div>
+<div style="background: rgba(14,15,18,.92); padding: 16px 20px; display: flex; flex-direction: column; gap: 4px"><dt class="mono" style="font-size: 12px; color: #9aa0a6">status</dt><dd style="margin: 0; font-size: 15px; color: #8fc1ea"><span class="live" aria-hidden="true"></span>em andamento</dd></div>
+<div style="background: rgba(14,15,18,.92); padding: 16px 20px; display: flex; flex-direction: column; gap: 4px"><dt class="mono" style="font-size: 12px; color: #9aa0a6">meu papel</dt><dd style="margin: 0; font-size: 15px">Domínio em Java (DDD) · protótipo do motor de IA</dd></div>
+<div style="background: rgba(14,15,18,.92); padding: 16px 20px; display: flex; flex-direction: column; gap: 4px"><dt class="mono" style="font-size: 12px; color: #9aa0a6">código</dt><dd style="margin: 0; font-size: 15px" class="ph">[link do repositório]</dd></div>
+</dl>
+</div>
+</section>
+
+<div style="max-width: 1100px; margin: 0 auto; padding: 0 24px; box-sizing: border-box">
+
+<section class="sec reveal" aria-labelledby="h-01">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>01 · CONTEXTO</p><h2 id="h-01">O que acontece na reunião fica na reunião</h2></div>
+<div class="body">
+<p>Reuniões de vendas geram muita informação — objeções, produtos citados, sinais de insatisfação — que se perde em transcrições longas. O DashFlow transforma essas transcrições em uma análise estruturada, focada no portfólio da TOTVS (Protheus, RM, Datasul, Fluig).</p>
+<p>O projeto é dividido em frentes entre a equipe. A minha é a <b style="color: #f3f1ec; font-weight: 500">implementação do domínio em Java com DDD</b>. Em paralelo, construí um protótipo do motor de IA em Python para validar o fluxo de ponta a ponta.</p>
+<p class="ph">[Opcional: tamanho da equipe e quais são as outras frentes.]</p>
+</div>
+</section>
+
+<section class="secw reveal" aria-labelledby="h-02">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>02 · ARQUITETURA</p><h2 id="h-02">Do texto bruto ao resultado tipado</h2></div>
+<figure style="margin: 0; border: 1px solid var(--line); border-radius: 12px; background: #0b0c0e; overflow: hidden">
+<div style="overflow-x: auto">
+<div style="padding: 36px 28px 20px; display: flex; flex-direction: column; gap: 22px; min-width: 900px; box-sizing: border-box">
+<p class="mono" style="margin: 0; font-size: 12px; color: #9aa0a6">motor de IA · protótipo FastAPI</p>
+<div class="flow">
+<div class="node"><span class="t">entrada</span><span class="n">Transcrição</span><span class="d">texto da reunião</span></div>
+<div class="wire" aria-hidden="true"><span class="l">upload</span><div class="line"><i class="pk"></i><i class="pk b"></i></div><span class="sp"></span></div>
+<div class="node"><span class="t">privacidade</span><span class="n">Anonimização LGPD</span><span class="d">dados pessoais removidos</span></div>
+<div class="wire" aria-hidden="true"><span class="l">prompt</span><div class="line"><i class="pk"></i></div><span class="sp"></span></div>
+<div class="node"><span class="t">IA</span><span class="n">Gemini API</span><span class="d">prompt estruturado</span></div>
+<div class="wire" aria-hidden="true"><span class="l">JSON</span><div class="line"><i class="pk"></i><i class="pk b"></i></div><span class="sp"></span></div>
+<div class="node hl"><span class="t" style="color: rgb(var(--a))">saída tipada</span><span class="n">ResultadoAnalise</span><span class="d">churn · produtos TOTVS</span></div>
+</div>
+<div class="mono" style="border: 1px dashed var(--line2); border-radius: 8px; padding: 12px 16px; font-size: 12px; color: #a9a59d; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px"><span>chat sobre a análise · multi-turno · streaming SSE · memória de sessão · upload no meio da conversa</span><span style="color: rgb(var(--a))">Gemini Interactions API</span></div>
+</div>
+</div>
+<div style="border-top: 1px solid var(--line); padding: 24px 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 20px; background: #0d0f0f">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="mono" style="margin: 0; font-size: 12px; color: rgb(var(--a))">domínio · Java · DDD — minha frente</p><div class="chips"><span>Agregados</span><span>Entidades</span><span>Value Objects</span><span>Regras de negócio</span></div></div>
+<p style="margin: 0; font-size: 14px; color: #a9a59d; line-height: 1.7">Conceitos modelados: anonimização LGPD, score de risco de churn e a taxonomia de produtos TOTVS. <span class="ph">[Nomes dos agregados principais.]</span></p>
+</div>
+<figcaption class="mono" style="padding: 12px 28px 16px; font-size: 12px; color: #8f959c; border-top: 1px solid var(--line)">Fig. 1 — Protótipo do motor (em cima) e camada de domínio em Java (embaixo). A persistência fica com outra frente da equipe.</figcaption>
+</figure>
+<div style="overflow-x: auto; border: 1px solid var(--line); border-radius: 10px">
+<table class="tbl">
+<caption class="mono" style="text-align: left; padding: 0 0 12px; font-size: 12px; letter-spacing: .12em; color: #9aa0a6; caption-side: top">COMPONENTES</caption>
+<thead><tr><th scope="col">COMPONENTE</th><th scope="col">O QUE FAZ</th><th scope="col">POR QUE IMPORTA</th></tr></thead>
+<tbody>
+<tr><td>Anonimização LGPD</td><td>Remove dados pessoais antes de qualquer envio à IA</td><td>Nenhum dado identificável sai do sistema</td></tr>
+<tr><td>Prompt estruturado</td><td>Pede à IA uma resposta em formato fixo</td><td>A saída vira um objeto tipado, não texto livre</td></tr>
+<tr><td>ResultadoAnalise</td><td>Estrutura tipada com risco de churn e produtos mencionados</td><td>Contrato claro entre IA e o resto do sistema</td></tr>
+<tr><td>Chat com SSE</td><td>Conversa multi-turno sobre a análise, com respostas em streaming</td><td>Resposta aparece enquanto é gerada</td></tr>
+<tr><td>Domínio Java (DDD)</td><td>Agregados e regras do negócio</td><td class="ph">[Como o domínio vai consumir o motor de IA?]</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="secw reveal" aria-labelledby="h-03">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>03 · DECISÕES</p><h2 id="h-03">Decisões e desafios</h2></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 14px">
+<article class="card"><span class="k">DECISÃO</span><h3>Anonimizar antes da IA</h3><p>A LGPD entra no desenho do fluxo, não como um ajuste no fim.</p></article>
+<article class="card"><span class="k">DECISÃO</span><h3>Prototipar o motor primeiro</h3><p>Um módulo único em Python validou o fluxo e depois cresceu para um MVP em FastAPI.</p></article>
+<article class="card"><span class="k">DECISÃO</span><h3>DDD no domínio</h3><p>Modelar o negócio em agregados antes da infraestrutura, desenvolvendo commit a commit. <span class="ph">[Por que DDD aqui?]</span></p></article>
+<article class="card" style="border-color: rgba(var(--a),.35)"><span class="k" style="color: rgb(var(--a))">DESAFIO</span><h3 class="ph">[O que deu mais trabalho]</h3><p>Ex.: alinhar o modelo Java com o protótipo Python, fazer a IA responder num formato consistente.</p></article>
+</div>
+</section>
+
+<section class="secw reveal" aria-labelledby="h-04">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>04 · STATUS</p><h2 id="h-04">Onde a missão está</h2></div>
+<ol class="phase">
+<li><span class="k">PROTÓTIPO · FEITO</span><b>Motor de IA em FastAPI</b><span class="d">Anonimização, análise tipada e chat com SSE.</span></li>
+<li class="now"><span class="k"><span class="live" aria-hidden="true"></span>FASE 1 · AGORA</span><b>Camada de domínio em Java</b><span class="d">Modelo de domínio com DDD.</span></li>
+<li><span class="k">PRÓXIMO</span><b class="ph">[Próxima fase]</b><span class="d">Ex.: integrar domínio e motor de IA.</span></li>
+</ol>
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="mono" style="margin: 0; font-size: 12px; color: #9aa0a6">stack</p><div class="chips"><span>Java</span><span>DDD</span><span>Python</span><span>FastAPI</span><span>Gemini API</span><span>SSE</span></div></div>
+</section>
+
+<section class="sec reveal" aria-labelledby="h-05">
+<div style="display: flex; flex-direction: column; gap: 10px"><p class="lbl" style="margin: 0"><span>// </span>05 · APRENDIZADOS</p><h2 id="h-05">O que estou aprendendo</h2></div>
+<div class="body"><p class="ph">[Sua reflexão até aqui. Ex.: modelar com DDD em equipe, desenhar contratos tipados com IA, LGPD na prática.]</p></div>
+</section>
+
+<nav aria-label="Navegação entre missões" class="reveal" style="margin: 110px 0 0; padding: 36px 0 90px; border-top: 1px solid #ffffff12; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+<a href="Portfolio.dc.html" class="back mono" style="font-size: 12px; letter-spacing: .12em; min-height: 44px; display: inline-flex; align-items: center">← TODAS AS MISSÕES</a>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a href="ClienteApp.dc.html" class="obtn">← Anterior: ClienteApp</a>
+<a href="AlertaSeguro.dc.html" class="obtn">Próxima: Alerta Seguro →</a>
+</div>
+</nav>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4500}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

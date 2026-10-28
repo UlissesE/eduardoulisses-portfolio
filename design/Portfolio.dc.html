@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Eduardo Ulisses — Portfólio</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#08090b}
+a{color:#e8c8a4}
+a:hover{color:#ffffff}
+.mk{--mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--a:173,159,137;--line:#ffffff12;--line2:#ffffff24}
+.mk a{color:inherit;text-decoration:none}
+.mk button{cursor:pointer;font-family:inherit}
+.mk ::selection{background:#c77932;color:#fff}
+.mk h1,.mk h2,.mk h3{font-family:'Space Grotesk','DM Sans',system-ui,sans-serif}
+.mk a:focus-visible,.mk button:focus-visible{outline:2px solid #e2c8a0;outline-offset:3px;border-radius:4px}
+.mono{font-family:var(--mono)}
+
+/* header */
+.hdr{height:84px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;gap:20px;position:sticky;top:0;z-index:50;background:rgba(8,9,11,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #ffffff0d}
+.logo{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;letter-spacing:-3px;line-height:1}
+.logo span{color:var(--gold)}
+.hdr nav{display:flex;gap:32px;font-size:14px;color:#c0bfbd}
+.hdr nav a{transition:color .2s}
+.hdr nav a:hover{color:#edb47e}
+.avail{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;color:#b4b1ab}
+.avail i{width:6px;height:6px;background:#d4aa78;border-radius:50%;animation:live 2.4s ease-in-out infinite}
+@keyframes live{0%,100%{box-shadow:0 0 0 0 #d4aa7880}60%{box-shadow:0 0 0 5px #d4aa7800}}
+
+/* hero (combined layout) */
+.hero{position:relative;min-height:900px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;isolation:isolate}
+.stars{position:absolute;inset:0;z-index:-3;opacity:.5;background-image:radial-gradient(1px 1px at 15% 20%,#ccc 80%,transparent),radial-gradient(1px 1px at 79% 40%,#fff 80%,transparent),radial-gradient(1px 1px at 42% 70%,#aaa 80%,transparent),radial-gradient(1.5px 1.5px at 63% 12%,#ffe9cf 80%,transparent);background-size:259px 241px,383px 311px,349px 367px,521px 487px}
+.drift{position:absolute;inset:0;z-index:-3;pointer-events:none;background-image:radial-gradient(1.5px 1.5px at 60px 120px,rgba(255,255,255,.9) 50%,transparent 51%),radial-gradient(1.5px 1.5px at 330px 40px,rgba(255,236,210,.8) 50%,transparent 51%),radial-gradient(2px 2px at 410px 360px,#fff 50%,transparent 51%);background-size:480px 480px;animation:drift 180s linear infinite;opacity:.6}
+@keyframes drift{to{background-position:-960px 480px}}
+.horb{position:absolute;border:1px solid #bda07a14;border-radius:50%;left:50%;top:50%;z-index:-2;pointer-events:none}
+.eclipse{position:absolute;left:50%;top:52%;width:min(1300px,140vw);height:auto;transform:translate(-50%,-18%);z-index:-2;pointer-events:none;animation:eglow 12s ease-in-out infinite}
+@keyframes eglow{50%{opacity:.82}}
+.ghost{position:absolute;left:50%;top:42%;width:min(1000px,118vw);aspect-ratio:600/415;transform:translate(-50%,-62%) rotate(-4deg);z-index:-1;pointer-events:none;-webkit-mask:url(/_blob/e832fa3d2aa724e6646937be19d10b84) center/contain no-repeat;mask:url(/_blob/e832fa3d2aa724e6646937be19d10b84) center/contain no-repeat;background:linear-gradient(100deg,#f3f1ec,var(--gold) 55%,#f3f1ec)}
+.hfade{position:absolute;inset:auto 0 0;height:200px;background:linear-gradient(transparent,#08090b 85%);z-index:-1;pointer-events:none}
+.topline{position:absolute;top:28px;left:6%;right:6%;display:flex;justify-content:space-between;gap:20px;font-family:var(--mono);font-size:12px;color:#8f959c}
+.topline .cm{color:#a9a59d}
+.sysdot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#c1b48b;box-shadow:0 0 10px #c1b48b88;margin-right:8px;vertical-align:2px}
+.hcode{position:absolute;left:6%;bottom:17%;display:grid;gap:6px;font-family:var(--mono);font-size:12px;line-height:1.7;color:#8f8a80;pointer-events:none}
+.hcode span{color:#767d84}.hcode b{color:#c4b2a6;font-weight:400}.hcode em{color:#c4b28c;font-style:normal}
+.hin{position:relative;width:100%;max-width:1240px;margin:0 auto;padding:110px 24px 120px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;text-align:center;gap:26px}
+.eyebrow{margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:#c9b08e;display:flex;align-items:center;gap:10px}
+.eyebrow i{width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.hero h1{margin:0;font-size:clamp(52px,8.4vw,124px);line-height:1;font-weight:500;letter-spacing:-.06em;text-shadow:0 3px 35px rgba(0,0,0,.65)}
+.hero h1 span{color:var(--gold)}
+.hrole{margin:0;font-family:var(--mono);font-size:clamp(16px,1.8vw,20px);color:#e4d7c7}
+.hrole span{color:var(--gold)}
+.caret::after{content:"";display:inline-block;width:2px;height:1.05em;margin-left:6px;vertical-align:-3px;background:var(--gold);animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hlead{margin:0;max-width:620px;font-size:18px;line-height:1.6;color:#c9c5bd;text-shadow:0 2px 15px #000;text-wrap:pretty}
+.pbtn{padding:15px 22px;border:1px solid #e3be94;background:#e8c8a4;color:#211b16 !important;font-size:13px;font-weight:600;display:inline-flex;gap:22px;align-items:center;border-radius:3px;transition:background .2s,transform .25s,box-shadow .25s}
+.pbtn:hover{background:#ffdfbc;transform:translateY(-2px);box-shadow:0 12px 40px -12px #e8a866}
+.pbtn .cmd{font-family:var(--mono);font-size:13px}
+.pbtn .cmd span{color:#6f5133}
+.tele-grid{margin:30px 0 0;width:100%;max-width:940px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:1px;background:#ffffff1a;border:1px solid #ffffff1a;border-radius:8px;overflow:hidden;text-align:left}
+.tele-grid>div{background:rgba(10,11,14,.86);padding:16px 20px;display:flex;flex-direction:column;gap:4px}
+.tele-grid dt{font-family:var(--mono);font-size:12px;color:#9aa0a6}
+.tele-grid dd{margin:0;font-size:15px;display:flex;align-items:center;gap:9px}
+.ldot{width:7px;height:7px;border-radius:50%;background:#b5c8a1;flex-shrink:0;animation:live3 2.2s ease-in-out infinite}
+@keyframes live3{0%,100%{box-shadow:0 0 0 0 rgba(181,200,161,.55)}60%{box-shadow:0 0 0 6px rgba(181,200,161,0)}}
+.cue{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);font-family:var(--mono);font-size:12px;color:#a9a59d;animation:cue 2.4s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.6;margin-bottom:0}50%{opacity:1;margin-bottom:-6px}}
+.rise{animation:rise 1.2s cubic-bezier(.16,.8,.2,1) both}
+.r1{animation-delay:.1s}.r2{animation-delay:.25s}.r3{animation-delay:.45s}.r4{animation-delay:.65s}.r5{animation-delay:.85s}
+@keyframes rise{from{opacity:0;transform:translateY(24px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+
+/* journey shell */
+.journey{position:relative;isolation:isolate}
+.journey::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.4;background-image:radial-gradient(1px 1px at 15% 20%,#ccc 80%,transparent),radial-gradient(1px 1px at 79% 40%,#fff 80%,transparent),radial-gradient(1px 1px at 42% 70%,#aaa 80%,transparent);background-size:259px 241px,383px 311px,349px 367px}
+.ps{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:8%;padding:105px 8%;min-height:640px;position:relative}
+.pc{position:relative;z-index:1;min-width:0}
+.pc h2{font-weight:400;font-size:clamp(30px,3.1vw,45px);line-height:1.25;letter-spacing:-1.7px;margin:22px 0}
+.pc h2 span{color:#a2a3a1}
+.pc>p{color:#a7aaae;font-size:16px;line-height:1.85;margin:0 0 14px}
+.clabel{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.clabel .eb{font-family:var(--mono);font-size:12px;letter-spacing:1.2px;color:#c2a886}
+.clabel .eb span{color:rgba(var(--a),.8)}
+.clabel code{font-family:var(--mono);font-size:12px;color:#8f959c;border:1px solid var(--line);border-radius:3px;padding:3px 8px;background:#ffffff03}
+.clabel .pl{font-family:var(--mono);font-size:12px;color:#8a8f96}
+
+/* planets */
+.pscene{--surface:radial-gradient(circle at 30% 28%,#c8c1af,#77776f 38%,#26272a 75%);--glow:#9d9c8c;position:relative;display:grid;place-items:center;width:100%;aspect-ratio:1;max-width:480px;justify-self:center;isolation:isolate;pointer-events:none}
+.ppath{position:absolute;inset:0;border:1px solid #ffffff0a;border-radius:50%;transform:rotate(-25deg) scaleY(.78)}
+.psphere{position:relative;width:72%;height:72%;border-radius:50%;background:var(--surface);box-shadow:inset -40px -22px 50px #000d,inset 2px 1px 7px #ffffff50,0 0 65px color-mix(in srgb,var(--glow) 14%,transparent);animation:pdrift 12s ease-in-out infinite}
+.psphere::before{content:"";position:absolute;inset:0;border-radius:inherit;opacity:.4;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.075' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.7' filter='url(%23n)'/%3E%3C/svg%3E")}
+@keyframes pdrift{50%{transform:translateY(-12px)}}
+.mercury{--surface:radial-gradient(circle at 32% 33%,#a9a59e 1%,transparent 3%),radial-gradient(circle at 45% 22%,#474742 2%,transparent 6%),radial-gradient(circle at 34% 52%,#494844 3%,transparent 7%),radial-gradient(circle at 65% 40%,#53524e 3%,transparent 8%),radial-gradient(circle at 28% 25%,#c2bcae,#79776c 42%,#34332e 75%)}
+.venus{--glow:#cf9c57;--surface:repeating-linear-gradient(165deg,#bf905b28 0 5%,#eee0a329 8% 11%,transparent 15% 21%),radial-gradient(circle at 25% 25%,#edca8b,#b27943 48%,#49321e 85%)}
+.earth{--glow:#5094c3;--surface:radial-gradient(ellipse at 37% 32%,#cbcdaf 0 4%,transparent 9%),radial-gradient(ellipse at 34% 40%,#5e8665 0 9%,transparent 14%),radial-gradient(ellipse at 56% 61%,#69886a 0 13%,transparent 18%),repeating-linear-gradient(155deg,transparent 0 8%,#eee8d954 12%,transparent 16% 24%),radial-gradient(circle at 30% 25%,#5098ba,#144b7b 52%,#0e203a 85%)}
+.mars{--glow:#b75e38;--surface:radial-gradient(ellipse at 40% 43%,#603529 0 8%,transparent 21%),radial-gradient(ellipse at 60% 65%,#70382b 0 8%,transparent 22%),radial-gradient(circle at 30% 25%,#db9870,#a3593c 46%,#41231f 80%)}
+.jupiter{--glow:#b18c65;--surface:radial-gradient(ellipse at 67% 63%,#a96c4b 0 5%,transparent 9%),repeating-linear-gradient(176deg,#bba180 0 6%,#d1bda0 9% 13%,#947557 16% 19%,#d1b799 21% 25%)}
+.saturn{--glow:#d7c290;--surface:repeating-linear-gradient(175deg,#bfb18c 0 7%,#dfd0a6 11% 14%,#9f9071 18% 21%)}
+.saturn .psphere{width:58%;height:58%}
+.saturn .psphere::after{content:"";position:absolute;inset:-24%;border:22px solid #b7a17f80;border-radius:50%;transform:rotate(-27deg) scaleY(.32);box-shadow:0 0 0 4px #090c11,0 0 0 8px #b7a17f50,0 0 0 13px #b7a17f18}
+.uranus{--glow:#8ed3d7;--surface:linear-gradient(115deg,#acd4d5,#69a6b1 55%,#295768)}
+.neptune{--glow:#4c71cf;--surface:repeating-linear-gradient(175deg,transparent 0 14%,#7694df33 18%,transparent 23% 30%),radial-gradient(circle at 28% 25%,#6b93d7,#325cba 45%,#162e69 83%)}
+
+.hov{transition:background-color .4s ease,border-color .4s ease}
+.hov:hover,.hov:focus-within{background-color:rgba(var(--a),.14);border-color:rgba(var(--a),.45)}
+
+/* sobre (combined) */
+.intro{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.portrait{width:112px;height:136px;object-fit:cover;object-position:50% 28%;border-radius:56px 56px 8px 8px;border:1px solid #ffffff24;filter:saturate(.85);transition:border-color .4s,box-shadow .4s}
+.portrait:hover{border-color:rgba(var(--a),.7);box-shadow:0 0 30px rgba(var(--a),.2)}
+.intro p{margin:0;flex:1 1 280px;font-size:17px;line-height:1.75;color:#c9c5bd;text-wrap:pretty}
+.intro em{font-style:normal;color:#f3f1ec;border-bottom:1px solid rgba(var(--a),.9)}
+.facts{margin:8px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));border-top:1px solid var(--line)}
+.facts>div{padding:14px 16px 14px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.facts dt{font-family:var(--mono);font-size:12px;color:#9aa0a6}
+.facts dd{margin:0;font-size:15px}
+
+/* Make timelines (formação / experiência) */
+.tl{list-style:none;margin:32px 0 24px;padding:0 0 0 26px;border-left:1px solid rgba(var(--a),.4)}
+.tl-i{position:relative;padding-bottom:24px}
+.tl-i::before{content:"";position:absolute;left:-31px;top:6px;width:9px;height:9px;border-radius:50%;background:rgb(var(--a));box-shadow:0 0 0 5px rgba(var(--a),.12)}
+.tl-p{font-family:var(--mono);font-size:12px;letter-spacing:1.4px;color:#c2a886}
+.tl-p::before{content:"> ";color:rgba(var(--a),.9)}
+.jcard{margin-top:12px;padding:22px;border:1px solid transparent;border-radius:4px;background:linear-gradient(120deg,rgba(var(--a),.07),transparent)}
+.jcard .tag{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:#b3b9a7}
+.jcard h3{font-size:22px;margin:10px 0;font-weight:400}
+.jcard p{margin:0;font-size:15px;line-height:1.85;color:#a7aaae}
+.jcard ul{margin:12px 0 0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.7;color:#a7aaae}
+.jcard ul b{color:#dcd8d0;font-weight:500}
+.foot{font-size:13px;color:#8f959c;margin:0}
+
+/* ferramentas (combined blocks + Make texts) */
+.stack-intro{margin:26px 0 12px !important;color:#c8c4be !important;font-size:15px !important}
+.editor{margin:0;border:1px solid rgba(var(--a),.32);border-radius:8px;overflow:hidden;background:#101218;transition:border-color .4s}
+.editor:hover{border-color:rgba(var(--a),.6)}
+.ed-t{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #ffffff0d;font-family:var(--mono);font-size:12px;color:#b3b0ac}
+.lights{display:flex;gap:5px}.lights i{width:7px;height:7px;border-radius:50%;background:#a37562}.lights i:nth-child(2){background:#ae9b6d}.lights i:nth-child(3){background:#749083}
+.ed-l{margin-left:auto;color:#8f959c}
+.editor pre{margin:0;padding:20px 18px 20px 6px;overflow-x:auto;counter-reset:ln;font-family:var(--mono);font-size:13px;line-height:2}
+.ln{display:block;white-space:pre}
+.ln::before{counter-increment:ln;content:counter(ln);display:inline-block;width:28px;padding-right:14px;color:#4f5964;text-align:right;user-select:none}
+.k{color:#d3a9c0}.s{color:#d9c394}.c{color:#7e8790}.t{color:#e8c9a2}
+.ed-s{display:flex;justify-content:space-between;gap:8px;padding:10px 16px;border-top:1px solid #ffffff0b;font-family:var(--mono);font-size:12px;color:#8f959c}
+.ed-s span:first-child{color:#b5c8a1}
+.blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.blocks>div{background:#0b0c0f;padding:18px;display:flex;flex-direction:column;gap:10px}
+.blocks .ns{font-family:var(--mono);font-size:12px;color:rgba(var(--a),1)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{padding:5px 9px;border:1px solid var(--line2);border-radius:4px;font-family:var(--mono);font-size:12px;color:#c9c5bd;transition:border-color .2s,background .2s,color .2s}
+.chips span:hover{border-color:rgba(var(--a),.8);background:rgba(var(--a),.1);color:#f3f1ec}
+
+/* projetos (Make orbit) */
+.oproj{padding:90px 8% 70px;position:relative}
+.otop{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:40px}
+.obtn{border:1px solid #ffffff28;border-radius:3px;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;gap:16px;font-size:13px;color:#e6e2da;background:transparent;transition:background-color .4s,border-color .4s}
+.obtn:hover{background:rgba(var(--a),.14);border-color:rgba(var(--a),.5)}
+.olay{position:relative;min-height:690px;display:flex;align-items:center}
+.olay>.pc{width:34%;align-self:flex-start;padding-top:70px}
+.olay>.pscene{position:absolute;width:240px;left:3%;bottom:15px;opacity:.85}
+.ohint{font-family:var(--mono);font-size:12px;letter-spacing:1.1px;color:#8f959c;display:block;margin-top:24px}
+.psys{--radius:220px;--card:184px;width:680px;height:680px;position:absolute;right:-20px;top:0}
+.oguide{position:absolute;inset:calc(50% - var(--radius));border:1px solid #c8b29026;border-radius:50%}
+.oguide::after{content:"";position:absolute;inset:-30px;border:1px dashed #ffffff08;border-radius:50%}
+.rotor{position:absolute;inset:0;animation:oturn 80s linear infinite}
+.slot{position:absolute;left:50%;top:50%;width:0;height:0;transform:rotate(var(--angle)) translateX(var(--radius)) rotate(calc(-1 * var(--angle)))}
+.counter{width:var(--card);height:var(--card);margin:calc(var(--card) / -2);animation:oturn 80s linear infinite reverse}
+.psys.paused .rotor,.psys.paused .counter{animation-play-state:paused}
+@keyframes oturn{to{transform:rotate(360deg)}}
+.rp{border:1px solid #c1c4df55;position:relative;width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:0 16px;box-sizing:border-box;color:#efebe4;background:radial-gradient(circle at 30% 20%,#4f566c,#181e2b 60%,#0a0d14);box-shadow:inset -13px -12px 35px #0008,0 0 35px #8796c318;transition:box-shadow .25s,border-color .25s,transform .25s}
+.rp.cosmos{background:radial-gradient(circle at 30% 20%,#7d6346,#2a2018 60%,#110e0b);border-color:#c7a47766}
+.rp.trajectory{background:radial-gradient(circle at 30% 20%,#456b64,#132e2a 60%,#091411);border-color:#81b2a566}
+.rp.ember{background:radial-gradient(circle at 30% 20%,#7a4a40,#2b1714 60%,#120a09);border-color:#c98a7466}
+.rp:hover,.rp:focus-visible{border-color:#e2c8a0;box-shadow:0 0 50px #cda67540;transform:scale(1.04)}
+.rp h3{font-size:21px;letter-spacing:-.5px;margin:6px 0;font-weight:500;line-height:1.15}
+.rp .rn{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:#d2ccbe}
+.rp .rc{font-family:var(--mono);font-size:11px;letter-spacing:.6px;color:#c4beb4}
+.rp .rs{font-family:var(--mono);font-size:11px;color:#b2b6b4;margin-top:6px}
+.rp .rs b{color:#d7c8ab;font-weight:400}
+.rp .ra{display:flex;align-items:center;gap:6px;margin-top:6px;font-family:var(--mono);font-size:11px;color:#c9cdd0}
+.ghrow{margin-top:34px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.ghrow>span{font-size:15px;color:#a39d97}
+
+/* project modal */
+.modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:24px;box-sizing:border-box}
+.scrim{position:absolute;inset:0;border:0;padding:0;margin:0;background:#000c;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);cursor:pointer;animation:fadein .3s ease}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.mpanel{position:relative;color:#eae7e0;background:linear-gradient(160deg,#17191d,#111215 60%);border:1px solid #ffffff22;border-radius:12px;width:100%;max-width:800px;box-sizing:border-box;max-height:calc(100vh - 48px);overflow-y:auto;overflow-x:hidden;box-shadow:0 40px 120px -20px #000,0 0 0 1px #ffffff06 inset;animation:pop .5s cubic-bezier(.16,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.mhead{position:relative;padding:40px 44px 28px;border-bottom:1px solid #ffffff10;overflow:hidden}
+.morb{position:absolute;right:-50px;top:-60px;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle at 30% 20%,#4f566c,#181e2b 60%,#0a0d14);box-shadow:inset -20px -18px 50px #000a,0 0 80px #8796c322;opacity:.9;animation:pdrift 10s ease-in-out infinite;pointer-events:none}
+.morb::after{content:"";position:absolute;inset:-18%;border:1px solid #ffffff20;border-radius:50%;transform:rotate(-22deg) scaleY(.32)}
+.morb.cosmos{background:radial-gradient(circle at 30% 20%,#9a7a55,#2a2018 60%,#110e0b);box-shadow:inset -20px -18px 50px #000a,0 0 80px #c7a47728}
+.morb.trajectory{background:radial-gradient(circle at 30% 20%,#5a8a80,#132e2a 60%,#091411);box-shadow:inset -20px -18px 50px #000a,0 0 80px #81b2a528}
+.morb.ember{background:radial-gradient(circle at 30% 20%,#98604f,#2b1714 60%,#120a09);box-shadow:inset -20px -18px 50px #000a,0 0 80px #c98a7428}
+.mclose{position:absolute;right:12px;top:10px;z-index:2;width:44px;height:44px;border-radius:50%;background:#0008;border:1px solid #ffffff1a;color:#e2e2e2;font-size:24px;line-height:1;transition:background .2s}
+.mclose:hover{background:#ffffff14}
+.mhead .eb{position:relative;font-family:var(--mono);font-size:12px;letter-spacing:1.6px;color:#c2a886;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.mstatus{display:inline-flex;align-items:center;gap:7px;color:#b5c8a1}
+.mstatus.run{color:#8fc1ea}
+.mstatus i{width:6px;height:6px;border-radius:50%;background:currentColor}
+.mpath{position:relative;margin-top:16px;font-family:var(--mono);font-size:13px;color:#d3bc9f}
+.mpath span{color:#8f959c}
+.mhead h2{position:relative;margin:12px 0 12px;font-weight:400;font-size:clamp(30px,4vw,42px);letter-spacing:-1.5px;max-width:520px}
+.mhead p{position:relative;margin:0;max-width:560px;font-size:16px;line-height:1.75;color:#bdbcb8}
+.mbody{padding:28px 44px 36px;display:flex;flex-direction:column;gap:26px}
+.mbody>*{animation:rise .7s cubic-bezier(.16,.8,.2,1) both}
+.mbody>*:nth-child(1){animation-delay:.15s}.mbody>*:nth-child(2){animation-delay:.25s}.mbody>*:nth-child(3){animation-delay:.35s}.mbody>*:nth-child(4){animation-delay:.45s}
+.msec{font-family:var(--mono);font-size:12px;color:#9aa0a6;margin:0 0 10px;display:flex;justify-content:space-between;gap:12px}
+.march{margin:0;border:1px solid #ffffff12;border-radius:10px;background:#0b0c0e;overflow-x:auto}
+.mflow{min-width:600px;padding:24px 20px 14px;display:flex;align-items:center}
+.mnode{flex:1 1 0;min-width:0;border:1px solid #ffffff22;border-radius:6px;padding:10px 12px;background:#141518;display:flex;flex-direction:column;gap:1px;transition:border-color .3s,background .3s}
+.mnode:hover{border-color:#e2c8a0;background:#1a1712}
+.mnode.hl{border-color:#dfab7580;background:#19150f}
+.mnode .mt{font-family:var(--mono);font-size:11px;color:#9aa0a6}
+.mnode .mn{font-size:14px;font-weight:500;line-height:1.3}
+.mwire{flex:0 0 64px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.mwire .ml{font-family:var(--mono);font-size:10px;color:#dfab75;white-space:nowrap}
+.mline{position:relative;width:100%;height:1px;background:linear-gradient(90deg,#ffffff24,#dfab75aa,#ffffff24)}
+.mpk{position:absolute;top:-2px;left:0;width:5px;height:5px;border-radius:50%;background:#ffe0b8;box-shadow:0 0 10px 2px #dfab75cc;animation:mpk 2.4s cubic-bezier(.5,0,.5,1) infinite}
+.mpk.b{animation-delay:1.2s}
+@keyframes mpk{0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:calc(100% - 5px);opacity:0}}
+.mspacer{height:13px}
+.minfra{margin:0 20px 18px;border:1px dashed #ffffff22;border-radius:6px;padding:8px 12px;font-family:var(--mono);font-size:11px;color:#9aa0a6;min-width:560px;box-sizing:border-box}
+.mpar{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:10px}
+.mpar>div{border:1px solid #ffffff10;border-radius:8px;padding:16px;background:#ffffff03;display:flex;flex-direction:column;gap:6px;transition:border-color .3s,background .3s}
+.mpar>div:hover{border-color:#dfab7555;background:#dfab750a}
+.mpar dt{font-family:var(--mono);font-size:12px;color:#dfab75}
+.mpar dd{margin:0;font-size:14px;line-height:1.7;color:#c9c9c6}
+.mtags{display:flex;flex-wrap:wrap;gap:7px}
+.mtags span{border:1px solid #ffffff18;border-radius:3px;padding:6px 10px;font-family:var(--mono);font-size:12px;color:#b9bdb9}
+.mfoot{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding-top:6px;border-top:1px solid #ffffff0e}
+.mph{font-family:var(--mono);font-size:13px;color:#c2a886}
+.mnote{margin-left:auto;font-family:var(--mono);font-size:12px;color:#8f959c}
+
+/* trajetória (Saturn, combined timeline improved) */
+.tj{list-style:none;margin:30px 0 0;padding:0;position:relative;display:flex;flex-direction:column;gap:18px}
+.tj::before{content:"";position:absolute;left:95px;top:10px;bottom:10px;width:1px;background:linear-gradient(180deg,rgba(var(--a),.9),rgba(var(--a),.25) 80%,transparent)}
+.tj-i{display:grid;grid-template-columns:72px 46px 1fr;align-items:start}
+.tj-d{display:flex;flex-direction:column;align-items:flex-end;padding-top:14px;font-family:var(--mono)}
+.tj-d .y{font-size:16px;color:#f3f1ec;line-height:1.2}
+.tj-d .m{font-size:12px;color:#9aa0a6;letter-spacing:.1em}
+.tj-n{position:relative;height:100%}
+.tj-n i{position:absolute;left:18px;top:20px;width:11px;height:11px;border-radius:50%;box-sizing:border-box;background:#08090b;border:1px solid rgb(var(--a));transition:transform .3s,box-shadow .3s}
+.tj-n i.on{background:rgb(var(--a));border:0;box-shadow:0 0 14px rgba(var(--a),.9)}
+.tj-n i.now{background:#b5c8a1;border:0;animation:live3 2.2s ease-in-out infinite}
+.tj-i:hover .tj-n i{transform:scale(1.35);box-shadow:0 0 16px rgba(var(--a),.9)}
+.tj-c{padding:16px 20px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(120deg,rgba(var(--a),.05),transparent);display:flex;flex-direction:column;gap:6px}
+.tj-c .tg{font-family:var(--mono);font-size:12px;color:rgb(var(--a))}
+.tj-c h3{margin:0;font-size:20px;font-weight:500}
+.tj-c p{margin:0;font-size:15px;color:#b5b1a9;line-height:1.7}
+
+/* certificados — constelação */
+.sky{position:relative;margin-top:26px;width:100%;aspect-ratio:16/11;border:1px solid var(--line);border-radius:12px;background:radial-gradient(ellipse at 70% 30%,rgba(var(--a),.09),transparent 60%),radial-gradient(ellipse at 15% 80%,rgba(var(--a),.05),transparent 50%),#07090c;overflow:hidden}
+.dust{position:absolute;inset:0;pointer-events:none;opacity:.6;background-image:radial-gradient(1px 1px at 12% 18%,#fff 80%,transparent),radial-gradient(1px 1px at 63% 42%,#cfe 80%,transparent),radial-gradient(1px 1px at 37% 77%,#fff 80%,transparent),radial-gradient(1.2px 1.2px at 88% 12%,#e8fbff 80%,transparent);background-size:130px 110px,170px 150px,210px 190px,260px 230px}
+.lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.lines path{fill:none;stroke:rgba(var(--a),.32);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:3 6;transition:stroke .4s}
+.lines .on path{stroke:rgba(var(--a),.95);stroke-dasharray:none;filter:drop-shadow(0 0 4px rgba(var(--a),.8))}
+.cname{position:absolute;font-family:var(--mono);font-size:11px;letter-spacing:.28em;color:rgba(var(--a),.8);pointer-events:none}
+.star{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:10px;min-height:44px;padding:0 6px;background:none;border:0;color:#d9e6e8}
+.star.left{flex-direction:row-reverse;transform:translate(calc(-100% + 18px),-50%)}
+.star.right{transform:translate(-18px,-50%)}
+.core{position:relative;width:10px;height:10px;border-radius:50%;background:#e9fbfc;flex-shrink:0;box-shadow:0 0 10px 2px rgba(var(--a),.9),0 0 26px rgba(var(--a),.5);animation:twinkle 3.2s ease-in-out infinite;transition:width .3s,height .3s}
+.core::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid rgba(var(--a),.6);opacity:0;transform:scale(.5);transition:opacity .3s,transform .3s}
+.star:hover .core::after,.star:focus-visible .core::after,.star.sel .core::after{opacity:1;transform:scale(1)}
+.star.sel .core{width:14px;height:14px;background:#fff}
+.lb{font-family:var(--mono);font-size:12px;white-space:nowrap;color:#a9bfc3;transition:color .2s}
+.star:hover .lb,.star.sel .lb{color:#fff}
+@keyframes twinkle{50%{opacity:.55}}
+.skyhint{position:absolute;left:16px;bottom:12px;font-family:var(--mono);font-size:11px;color:#7f9195;pointer-events:none}
+.cdetail{margin-top:14px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px 20px;padding:18px 20px;border:1px solid rgba(var(--a),.35);border-radius:8px;background:linear-gradient(120deg,rgba(var(--a),.09),transparent);animation:cdin .45s ease}
+@keyframes cdin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.cdetail .ck{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:rgb(var(--a))}
+.cdetail h3{margin:4px 0;font-size:20px;font-weight:500}
+.cdetail .cv{font-size:14px;color:#a9b4b6}
+
+/* contato — satellite module */
+.smod{--a:85,127,216;position:relative;min-height:820px;padding:130px 8% 110px;display:flex;flex-direction:column;justify-content:center;align-items:center;isolation:isolate;overflow:hidden}
+.mback{position:absolute;width:460px;left:-140px;bottom:-60px;opacity:.45;z-index:-1;pointer-events:none}
+.trails{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(transparent,#000 20%,#000 80%,transparent);mask-image:linear-gradient(transparent,#000 20%,#000 80%,transparent)}
+.trails i{position:absolute;width:calc(70px + var(--i) * 14px);height:1px;top:calc(7% + var(--i) * 7.5%);left:0;background:linear-gradient(90deg,transparent,#d4b68477);animation:warp calc(1.1s + var(--i) * .11s) linear infinite;animation-delay:calc(var(--i) * -.39s)}
+@keyframes warp{from{transform:translateX(110vw);opacity:0}15%,80%{opacity:.6}to{transform:translateX(-300px);opacity:0}}
+.sat{width:100%;max-width:1060px;display:grid;grid-template-columns:minmax(90px,1fr) minmax(0,600px) minmax(90px,1fr);align-items:center;gap:30px;position:relative;animation:cruise 7s ease-in-out infinite}
+@keyframes cruise{0%,100%{transform:translate(0,0) rotate(-.8deg)}50%{transform:translate(4px,-12px) rotate(.8deg)}}
+.sbody{position:relative;padding:26px 34px 36px;border:1px solid #bba57470;border-radius:20px;background:linear-gradient(135deg,#272a2e,#10141b 45%,#1b1d21);box-shadow:inset 0 0 0 5px #070b1060,inset 0 0 0 6px #c8b78b13,0 24px 100px #0008}
+.sbody h2{font-weight:400;font-size:clamp(28px,3vw,42px);line-height:1.2;letter-spacing:-1.4px;margin:18px 0 16px}
+.sbody h2 span{color:#a2a3a1}
+.tele{display:flex;justify-content:space-between;gap:10px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #e2ca8d16;color:#9ca19e;font-family:var(--mono);font-size:12px}
+.tele span:first-child{display:flex;align-items:center;gap:8px}
+.tele i{width:5px;height:5px;border-radius:50%;background:#b5c8a1;box-shadow:0 0 8px #b5c8a1}
+.boot{display:grid;gap:6px;padding-bottom:18px;font:12px/1.8 var(--mono);color:#9aa2a3}
+.boot b{font-weight:400;color:#d0bb88}.boot i{font-style:normal;color:#b8c29c}
+.sbody .sp{margin:0;color:#c3c5c7;font-size:16px;line-height:1.8}
+.mail{display:inline-block;margin-top:20px;font-size:clamp(17px,2.2vw,22px);padding-bottom:3px;border-bottom:1px solid #ffffff30;color:#e8edf6;overflow-wrap:anywhere;transition:color .2s,border-color .2s}
+.mail:hover{color:#c7d6e6;border-color:#9fb4e8}
+.cbtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.cbtn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 18px;border:1px solid #ffffff28;border-radius:3px;font-size:14px;color:#dfe5ee;transition:background-color .4s,border-color .4s}
+.cbtn:hover{background:rgba(var(--a),.16);border-color:rgba(var(--a),.6)}
+.cbtn.solid{background:#c7d6e6;border-color:#c7d6e6;color:#141a22;font-weight:600}
+.cbtn.solid:hover{background:#e0e9f3}
+.prompt{margin-top:22px;font:12px var(--mono);color:#9ca19e}
+.prompt span{color:#b6c19e}
+.prompt i{display:inline-block;width:6px;height:13px;vertical-align:middle;background:#d4c29e;margin-left:4px;animation:blink 1.2s steps(2) infinite}
+.spanel{height:225px;border:4px solid #7e868d;border-radius:3px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:5px;background:#141a22;position:relative;box-shadow:0 10px 40px #0005}
+.spanel span{background:repeating-linear-gradient(0deg,transparent 0 19px,#83a8cd40 20px 21px),linear-gradient(125deg,#35536e,#162e49 50%,#2e4960);border:1px solid #8498b133}
+.spanel::after{content:"";position:absolute;width:35px;height:13px;top:calc(50% - 6px);background:linear-gradient(#7a8286,#323b40,#717b7e);z-index:-1}
+.pL{transform:perspective(600px) rotateY(20deg)}.pL::after{right:-37px}
+.pR{transform:perspective(600px) rotateY(-20deg)}.pR::after{left:-37px}
+.engine{position:absolute;left:calc(50% - 47px);bottom:-18px;display:flex;gap:9px}
+.engine span{width:25px;height:17px;border:1px solid #8e9290;border-top:0;border-radius:0 0 5px 5px;background:linear-gradient(90deg,#343c42,#868c87,#30373e);position:relative}
+.engine span::after{content:"";position:absolute;width:15px;height:48px;top:16px;left:4px;background:linear-gradient(#b8ddff99,#6ba0e43b,transparent);filter:blur(3px);border-radius:0 0 50% 50%;animation:thrust .4s ease-in-out infinite alternate;transform-origin:top}
+@keyframes thrust{to{transform:scaleY(.7);opacity:.65}}
+.flabel{margin-top:86px;font-family:var(--mono);font-size:12px;letter-spacing:1.6px;color:#8f959c;text-align:center}
+
+/* hero side label (Make) */
+.vlabel{position:absolute;right:4.5%;bottom:120px;writing-mode:vertical-rl;font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:#8a8780;pointer-events:none}
+
+/* sobre — cartões de tripulante */
+.crew{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:12px}
+.ccard{position:relative;border:1px solid var(--line2);border-radius:12px;padding:16px 18px;background:linear-gradient(150deg,rgba(var(--a),.07),#0c0d10 60%);overflow:hidden;transition:border-color .4s}
+.ccard:hover{border-color:rgba(var(--a),.5)}
+.ck{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:#b9b4ab}
+.cdot{width:6px;height:6px;border-radius:50%;background:#b5c8a1;animation:live3 2.2s ease-in-out infinite}
+.cmoon{width:9px;height:9px;border-radius:50%;box-shadow:inset -3px -1px 0 0 #c9c2b2}
+.mini{position:relative;height:200px}
+.mring{position:absolute;left:50%;top:50%;width:156px;height:156px;margin:-78px;border:1px dashed rgba(var(--a),.4);border-radius:50%}
+.mcore{position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px;border-radius:50%;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;letter-spacing:-1px;color:#1a1712;background:radial-gradient(circle at 30% 28%,#e8dcc4,#a39a88 55%,#5b574e);box-shadow:0 0 26px rgba(var(--a),.35)}
+.mrot{position:absolute;inset:0;animation:oturn 40s linear infinite}
+.mslot{position:absolute;left:50%;top:50%;width:0;height:0;transform:rotate(var(--angle)) translateX(78px) rotate(calc(-1 * var(--angle)))}
+.mcounter{width:0;height:0;animation:oturn 40s linear infinite reverse}
+.mchip{position:absolute;left:0;top:0;transform:translate(-50%,-50%);white-space:nowrap;padding:5px 10px;border:1px solid rgba(var(--a),.55);border-radius:999px;background:#101114;font-family:var(--mono);font-size:12px;color:#ece8e0;box-shadow:0 0 14px rgba(var(--a),.15)}
+.crew:hover .mrot,.crew:hover .mcounter{animation-play-state:paused}
+.rest{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.rest li{display:flex;gap:14px;align-items:flex-start;padding:12px;border-radius:8px;background:#ffffff04;transition:background .3s}
+.rest li:hover{background:rgba(var(--a),.1)}
+.ric{flex-shrink:0;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;color:#e8dcc4;border:1px solid var(--line2);background:#121316}
+.rest b{display:block;font-size:16px;font-weight:500}
+.rest li span:not(.ric){display:block;font-size:14px;line-height:1.55;color:#a9a59d}
+
+/* editor method names */
+.pp{color:#a4c0d1}
+
+/* insígnias */
+.bwrap{margin-top:28px;padding-top:22px;border-top:1px dashed var(--line2)}
+.bhead{margin:0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-family:var(--mono);font-size:12px;color:rgb(var(--a))}
+.bhead span:last-child{color:#8f959c}
+.badges{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:12px}
+.badge{display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;padding:8px 4px 10px;border-radius:10px;transition:background .3s}
+.badge:hover,.badge:focus-visible{background:#ffffff06}
+.patch{width:100%;max-width:100px;height:auto;margin-bottom:6px;filter:drop-shadow(0 6px 14px #000a);transition:transform .6s cubic-bezier(.2,.8,.2,1),filter .4s}
+.badge:hover .patch,.badge:focus-visible .patch{transform:rotate(-12deg) scale(1.07);filter:drop-shadow(0 0 16px rgba(var(--a),.45))}
+.bn{font-size:13px;line-height:1.3;color:#ece8e0}
+.bi{font-family:var(--mono);font-size:11px;color:#8f9a9c}
+.bv{font-family:var(--mono);font-size:11px;color:rgb(var(--a));opacity:0;transition:opacity .3s}
+.badge:hover .bv,.badge:focus-visible .bv{opacity:1}
+
+footer.ft{padding:28px 6%;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:#08090b;border-top:1px solid #ffffff0b}
+footer.ft .logo{font-size:27px}
+footer.ft>span,footer.ft>a:last-child{font-size:13px;color:#959ba3}
+
+/* scroll rocket */
+.rtrack{position:fixed;z-index:45;right:17px;top:16vh;height:68vh;width:28px;pointer-events:none}
+.rocket{position:absolute;left:0;top:0;width:28px;height:56px;filter:drop-shadow(0 0 8px #dbad7530)}
+.flame{transform-origin:20px 30px;animation:thrust .7s ease-in-out infinite alternate}
+@supports (animation-timeline: scroll()){
+  .rocket{animation:fly linear both;animation-timeline:scroll(root)}
+  @keyframes fly{from{top:0}to{top:calc(100% - 56px)}}
+  .reveal{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% cover 24%}
+  @keyframes reveal{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+}
+
+@media(max-width:1050px){
+  .psys{--radius:178px;--card:158px;width:540px;height:560px;right:-50px;top:60px}
+  .rp h3{font-size:18px}
+  .olay>.pc{width:40%}
+  .ps{gap:5%;padding:85px 6%}
+}
+@media(max-width:800px){
+  .lb,.cname{display:none}
+  .sky{aspect-ratio:4/3}
+  .hdr{height:72px}
+  .hdr nav,.hdr .avail{display:none}
+  .topline span:last-child,.hcode,.cue,.vlabel{display:none}
+  .ps{grid-template-columns:1fr;padding:70px 7%;gap:28px;min-height:0}
+  .ps .pc{order:1}
+  .ps>.pscene{order:2;max-width:300px}
+  .olay{display:block;min-height:860px}
+  .olay>.pc{width:100%;padding-top:0}
+  .olay>.pscene{width:160px;left:calc(50% - 80px);top:600px;bottom:auto;opacity:.6}
+  .psys{--radius:124px;--card:130px;width:380px;height:400px;left:calc(50% - 190px);top:270px;right:auto}
+  .rp h3{font-size:15px}.rp .rc,.rp .rs{display:none}
+  .tj::before{left:71px}
+  .tj-i{grid-template-columns:52px 40px 1fr}
+  .tj-n i{left:15px}
+  .sat{grid-template-columns:22px minmax(0,1fr) 22px;gap:11px}
+  .spanel{height:150px;border-width:2px;grid-template-columns:1fr;padding:2px;gap:2px}
+  .spanel span:not(:first-child){display:none}
+  .spanel::after{width:14px}.pL::after{right:-16px}.pR::after{left:-16px}
+  .sbody{padding:24px 20px 32px;border-radius:14px}
+  .mback{width:300px}
+  .rtrack{right:5px;width:20px}
+  .mhead{padding:34px 22px 22px}
+  .mbody{padding:22px}
+  .morb{width:160px;height:160px}
+}
+@media(prefers-reduced-motion:reduce){
+  .mk *,.mk *::before,.mk *::after{animation:none !important;transition:none !important}
+  .reveal,.rise{opacity:1 !important;transform:none !important;filter:none !important}
+}
+</style>
+</helmet>
+
+<div class="mk" style="--gold: {{gold}}; position: relative; background: #08090b; color: #f3f1ec; font-family: 'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased">
+
+<div class="rtrack" aria-hidden="true">
+<svg class="rocket" viewBox="0 0 40 80" fill="none"><defs><linearGradient id="pf-metal" x1="11" y1="30" x2="30" y2="55" gradientUnits="userSpaceOnUse"><stop stop-color="#f1e7d7"></stop><stop offset="1" stop-color="#858b98"></stop></linearGradient><linearGradient id="pf-fire" x1="20" y1="30" x2="20" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#fff1c9"></stop><stop offset=".45" stop-color="#e5ac70"></stop><stop offset="1" stop-color="#e5ac70" stop-opacity="0"></stop></linearGradient></defs><path class="flame" d="M15 30Q13 16 20 1Q27 16 25 30Z" fill="url(#pf-fire)"></path><path d="M13 42L5 54V65L15 60M27 42L35 54V65L25 60" fill="#ac8665" stroke="#e3bd8b" stroke-width=".7"></path><path d="M14 29H26L27 49Q27 65 20 74Q13 65 13 49Z" fill="url(#pf-metal)"></path><path d="M13 56Q20 61 27 56Q25 68 20 74Q15 68 13 56Z" fill="#d3a173"></path><circle cx="20" cy="44" r="4.5" fill="#101c2c" stroke="#dcc5a7" stroke-width="1.3"></circle><circle cx="19" cy="43" r="1.5" fill="#7fa2b8"></circle><path d="M14 29H26M15 32H25" stroke="#d5c9b8" stroke-width="2"></path></svg>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="hdr">
+<a href="#inicio" class="logo" aria-label="Eduardo Ulisses, início">eu<span>.</span></a>
+<nav aria-label="Navegação principal"><a href="#sobre">Sobre mim</a><a href="#formacao">Formação</a><a href="#projetos">Projetos</a><a href="#trajetoria">Trajetória</a><a href="#contato">Contato ↗</a></nav>
+<span class="avail"><i></i> Disponível para novas órbitas</span>
+</header>
+
+<main>
+<!-- ================= HERO (versão combinada) ================= -->
+<section class="hero" id="inicio" aria-labelledby="pf-h1">
+<div class="stars" aria-hidden="true"></div>
+<div class="drift" aria-hidden="true"></div>
+<div class="horb" aria-hidden="true" style="width: 1180px; height: 1180px; margin: -590px 0 0 -590px; opacity: .6"></div>
+<div class="horb" aria-hidden="true" style="width: 1500px; height: 1500px; margin: -750px 0 0 -750px; border-style: dashed; opacity: .4"></div>
+<svg class="eclipse" aria-hidden="true" viewBox="0 0 1200 1000" fill="none"><defs><radialGradient id="pf-corona"><stop offset=".62" stop-color="#ffb968" stop-opacity="0"></stop><stop offset=".72" stop-color="#ffba77" stop-opacity=".06"></stop><stop offset=".79" stop-color="#ffc486" stop-opacity=".28"></stop><stop offset=".83" stop-color="#ffdcb2" stop-opacity=".65"></stop><stop offset=".86" stop-color="#eaaa66" stop-opacity=".15"></stop><stop offset="1" stop-color="#c57639" stop-opacity="0"></stop></radialGradient><linearGradient id="pf-rim" x1="340" y1="180" x2="850" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#fff2d6"></stop><stop offset=".35" stop-color="#ffc88e"></stop><stop offset=".7" stop-color="#af6d38" stop-opacity=".5"></stop><stop offset="1" stop-color="#784829" stop-opacity="0"></stop></linearGradient><radialGradient id="pf-diamond"><stop stop-color="#fffdf1"></stop><stop offset=".12" stop-color="#fff1cc"></stop><stop offset=".3" stop-color="#ffc17d" stop-opacity=".6"></stop><stop offset="1" stop-color="#f6a454" stop-opacity="0"></stop></radialGradient><radialGradient id="pf-disk" cx=".42" cy=".25" r=".8"><stop stop-color="#0c0c0f"></stop><stop offset=".7" stop-color="#08090b"></stop><stop offset="1" stop-color="#08090b"></stop></radialGradient><linearGradient id="pf-fade" x2="0" y2="1"><stop offset=".55" stop-color="white"></stop><stop offset="1" stop-color="black"></stop></linearGradient><mask id="pf-horizon"><path fill="url(#pf-fade)" d="M0 0h1200v1000H0z"></path></mask><filter id="pf-blur"><feGaussianBlur stdDeviation="17"></feGaussianBlur></filter><filter id="pf-soft"><feGaussianBlur stdDeviation="3"></feGaussianBlur></filter></defs><g mask="url(#pf-horizon)"><ellipse cx="600" cy="580" rx="530" ry="530" fill="url(#pf-corona)"></ellipse><circle cx="600" cy="580" r="390" stroke="#f6b574" stroke-width="12" opacity=".35" filter="url(#pf-blur)"></circle><circle cx="600" cy="580" r="390" fill="url(#pf-disk)"></circle><circle cx="600" cy="580" r="391" stroke="url(#pf-rim)" stroke-width="3"></circle><path d="M209 580a391 391 0 0 1 782 0" stroke="#ffe0b6" stroke-width="3" opacity=".7" filter="url(#pf-soft)"></path><circle cx="337" cy="291" r="90" fill="url(#pf-diamond)"></circle><ellipse cx="337" cy="291" rx="45" ry="2" fill="url(#pf-diamond)"></ellipse><circle cx="337" cy="291" r="4" fill="#fff8df"></circle></g></svg>
+<div class="ghost" aria-hidden="true" style="opacity: {{eupsOpacity}}"></div>
+<div class="hfade" aria-hidden="true"></div>
+
+<div class="topline"><span><span class="cm">~/eduardo-ulisses</span> / portfolio</span><span><span class="sysdot"></span>SISTEMA ONLINE · BASE: TERRA</span></div>
+<div class="hcode" aria-hidden="true"><span>// mission.init</span><code><b>const</b> horizonte = <em>"além"</em>;</code><code>explorar(horizonte);</code></div>
+
+<div class="hin">
+<p class="eyebrow rise r1"><i aria-hidden="true"></i>O PRÓXIMO PASSO É SEMPRE ALÉM</p>
+<h1 id="pf-h1" class="rise r2">Eduardo Ulisses<span>.</span></h1>
+<p class="hrole caret rise r3"><span>&lt;/&gt;</span> Desenvolvedor backend · Java</p>
+<a class="pbtn rise r4" href="#projetos" style="margin-top: 10px"><span class="cmd">explorarProjetos<span>()</span></span> <span aria-hidden="true">↓</span></a>
+</div>
+<a href="#sobre" class="cue">↓ role para explorar</a>
+<span class="vlabel" aria-hidden="true">UMA JORNADA EM CONSTANTE EXPANSÃO</span>
+</section>
+
+<div class="journey">
+
+<!-- ================= SOBRE (Mercúrio) — versão combinada ================= -->
+<section class="ps" id="sobre" aria-labelledby="h-sobre" style="--a: 201,194,178">
+<div class="pc reveal">
+<span class="clabel"><span class="eb"><span aria-hidden="true">// </span>SOBRE MIM</span><code aria-hidden="true">about.ts</code></span>
+<h2 id="h-sobre">Uma mente curiosa.<br><span>Um universo pela frente.</span></h2>
+<div class="intro">
+<img class="portrait" src="/_blob/1e8f5c322a9f76f30b7ca134d6fddd1f" alt="Foto de Eduardo Ulisses">
+<p>Minha jornada começou com a curiosidade de entender como as coisas funcionam <em>por trás dos panos</em> — e até hoje me fascino vendo as engrenagens girarem.</p>
+</div>
+<p style="margin-top: 22px; font-size: 17px; color: #c9c5bd">Na bp bioenergy, transformo processos manuais em fluxos automatizados. Na faculdade e nos projetos pessoais, o centro de gravidade é o backend: modelagem de domínio, APIs e a arquitetura que mantém um sistema fácil de evoluir.</p>
+<div class="crew">
+<article class="ccard" aria-labelledby="crew-orb">
+<span class="ck" id="crew-orb"><i class="cdot" aria-hidden="true"></i>EM ÓRBITA AGORA · estudando</span>
+<div class="mini">
+<div class="mring" aria-hidden="true"></div>
+<div class="mcore" aria-hidden="true">eu</div>
+<div class="mrot">
+<div class="mslot" style="--angle: -90deg"><div class="mcounter"><span class="mchip">Spring Boot</span></div></div>
+<div class="mslot" style="--angle: 30deg"><div class="mcounter"><span class="mchip">Oracle</span></div></div>
+<div class="mslot" style="--angle: 150deg"><div class="mcounter"><span class="mchip">DDD</span></div></div>
+</div>
+</div>
+</article>
+<article class="ccard" aria-labelledby="crew-rest">
+<span class="ck" id="crew-rest"><i class="cmoon" aria-hidden="true"></i>FORA DO TERMINAL · modo descanso</span>
+<ul class="rest">
+<li><span class="ric" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4M15 12h.01M18 10h.01"></path><path d="M17.3 5H6.7a4 4 0 0 0-3.96 3.47l-.73 5.5A3 3 0 0 0 7 16.6L9 15h6l2 1.6a3 3 0 0 0 4.99-2.63l-.73-5.5A4 4 0 0 0 17.3 5z"></path></svg></span><div><b>Jogos</b><span>Treinam o raciocínio — e até a criatividade.</span></div></li>
+<li><span class="ric" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"></path><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"></path></svg></span><div><b>Leitura</b><span>Um escape das telas para descansar a mente.</span></div></li>
+</ul>
+</article>
+</div>
+</div>
+<div class="pscene mercury" aria-hidden="true"><div class="ppath"></div><div class="psphere"></div></div>
+</section>
+
+<!-- ================= FORMAÇÃO (Vênus) ================= -->
+<section class="ps" id="formacao" aria-labelledby="h-form" style="--a: 210,160,83">
+<div class="pscene venus" aria-hidden="true"><div class="ppath"></div><div class="psphere"></div></div>
+<div class="pc reveal">
+<span class="clabel"><span class="eb"><span aria-hidden="true">// </span>FORMAÇÃO</span><code aria-hidden="true">education.log</code></span>
+<h2 id="h-form">Conhecimento é<br><span>combustível para ir além.</span></h2>
+<ol class="tl">
+<li class="tl-i"><span class="tl-p">ATUALMENTE · DESDE MAR 2025</span>
+<article class="jcard hov"><span class="tag">GRADUAÇÃO · FIAP · 4º SEMESTRE</span><h3>Engenharia de Software</h3><p>Construindo uma base em lógica, algoritmos, arquitetura e desenvolvimento de software. Da compreensão do problema à construção da solução. Bolsa integral de 100% pelo Prouni.</p></article></li>
+</ol>
+</div>
+</section>
+
+<!-- ================= EXPERIÊNCIA (Terra) ================= -->
+<section class="ps" id="experiencia" aria-labelledby="h-exp" style="--a: 75,148,207">
+<div class="pc reveal">
+<span class="clabel"><span class="eb"><span aria-hidden="true">// </span>EXPERIÊNCIA</span><code aria-hidden="true">experience.log</code></span>
+<h2 id="h-exp">Ideias com os pés no chão.<br><span>Ambições nas estrelas.</span></h2>
+<ol class="tl">
+<li class="tl-i"><span class="tl-p">ATUALMENTE · DESDE ABR 2026</span>
+<article class="jcard hov"><span class="tag">ESTÁGIO · DADOS &amp; AUTOMAÇÃO</span><h3>Tecnologia · bp bioenergy</h3><p>Aplicações low-code, automações e ETL de dados em ambiente corporativo, com Power Platform, SQL, SAP Datasphere e Power BI.</p>
+<ul><li><b>Aprovações de pagamento:</b> pedidos que viviam no e-mail passaram para approvals no Teams com lista central no SharePoint.</li><li><b>Segurança de APIs:</b> formulário com pontuação automática, detecção de duplicatas e documento gerado para o time de segurança.</li></ul></article></li>
+</ol>
+</div>
+<div class="pscene earth" aria-hidden="true"><div class="ppath"></div><div class="psphere"></div></div>
+</section>
+
+<!-- ================= FERRAMENTAS (Marte) — blocos da combinada + textos do Make ================= -->
+<section class="ps" id="habilidades" aria-labelledby="h-tools" style="--a: 224,138,108">
+<div class="pscene mars" aria-hidden="true"><div class="ppath"></div><div class="psphere"></div></div>
+<div class="pc reveal">
+<span class="clabel"><span class="eb"><span aria-hidden="true">// </span>FERRAMENTAS</span><code aria-hidden="true">Stack.java</code></span>
+<h2 id="h-tools">As ferramentas<br><span>da próxima missão.</span></h2>
+<p>Explorando o desenvolvimento de ponta a ponta. Meu kit continua crescendo a cada novo desafio.</p>
+<p class="stack-intro">Essa é minha stack principal</p>
+<figure class="editor">
+<figcaption class="ed-t"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>Stack.java<span class="ed-l">Java 17</span></figcaption>
+<pre aria-label="Stack principal: foco em backend, Java 17, Spring Boot em estudo, SQL, Oracle e MongoDB nos dados, Docker e AWS EC2 na infraestrutura"><span class="ln"><span class="t">Stack</span> eduardo = <span class="t">Stack</span>.<span class="pp">builder</span>()</span><span class="ln">    .<span class="pp">foco</span>(<span class="s">"backend"</span>)</span><span class="ln">    .<span class="pp">linguagem</span>(<span class="s">"Java 17"</span>)</span><span class="ln">    .<span class="pp">framework</span>(<span class="s">"Spring Boot"</span>)      <span class="c">// em estudo</span></span><span class="ln">    .<span class="pp">dados</span>(<span class="s">"SQL"</span>, <span class="s">"Oracle"</span>, <span class="s">"MongoDB"</span>)</span><span class="ln">    .<span class="pp">infra</span>(<span class="s">"Docker"</span>, <span class="s">"AWS EC2"</span>)</span><span class="ln">    .<span class="k">build</span>();</span></pre>
+<div class="ed-s"><span>● main</span><span>build: ok</span></div>
+</figure>
+<p class="stack-intro">Mas também tenho conhecimentos em:</p>
+<div class="blocks">
+<div><span class="ns">server/</span><div class="chips"><span>Java</span><span>Python · FastAPI</span><span>REST</span><span>Node.js</span></div></div>
+<div><span class="ns">interface/</span><div class="chips"><span>React</span><span>TypeScript</span><span>Tailwind</span></div></div>
+<div><span class="ns">infra/</span><div class="chips"><span>Git</span><span>Linux</span><span>MQTT · Fiware</span></div></div>
+<div><span class="ns">automation/</span><div class="chips"><span>Power Platform</span><span>Power BI</span></div></div>
+</div>
+</div>
+</section>
+
+<!-- ================= PROJETOS (Júpiter, órbita) ================= -->
+<section class="oproj" id="projetos" aria-labelledby="h-proj" style="--a: 188,143,92">
+<div class="otop">
+<span class="clabel"><span class="eb"><span aria-hidden="true">// </span>PROJETOS</span><code aria-hidden="true">missions.ts</code></span>
+<button type="button" class="obtn" aria-pressed="{{pausedStr}}" onClick="{{togglePause}}">{{pauseLabel}} <span aria-hidden="true">{{pauseIcon}}</span></button>
+</div>
+<div class="olay">
+<div class="pc reveal">
+<h2 id="h-proj">Ideias que saíram<br><span>da atmosfera.</span></h2>
+<p>Cada projeto, uma nova exploração.<br>Selecione uma missão para descobrir os detalhes.</p>
+<span class="ohint">ESCOLHA UMA MISSÃO · EXPLORE OS DETALHES</span>
+</div>
+<div class="pscene jupiter" aria-hidden="true"><div class="ppath"></div><div class="psphere"></div></div>
+<div class="psys {{pausedClass}}">
+<div class="oguide" aria-hidden="true"></div>
+<div class="rotor">
+<sc-for list="{{projects}}" as="p" hint-placeholder-count="4">
+<div class="slot" style="--angle: {{p.angle}}">
+<div class="counter">
+<button type="button" class="rp {{p.style}}" onClick="{{p.open}}" aria-label="Ver missão {{p.name}}"><span class="rn">MISSÃO {{p.num}}</span><h3>{{p.name}}</h3><span class="rc">{{p.cat}}</span><span class="rs">status: <b>{{p.status}}</b></span><span class="ra">explorar() <span aria-hidden="true">↗</span></span></button>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+<div class="ghrow"><span>Esta é apenas uma parte da jornada.</span><a href="https://github.com/UlissesE" class="obtn">Explorar no GitHub <span aria-hidden="true">↗</span></a></div>
+</section>
+
+<!-- ================= TRAJETÓRIA (Saturno) ================= -->
+<section class="ps" id="trajetoria" aria-labelledby="h-traj" style="--a: 222,196,140">
+<div class="pscene saturn" aria-hidden="true"><div class="ppath"></div><div class="psphere"></div></div>
+<div class="pc reveal">
+<span class="clabel"><span class="eb"><span aria-hidden="true">// </span>TRAJETÓRIA</span><code aria-hidden="true">journey.log</code></span>
+<h2 id="h-traj">A trajetória<br><span>até aqui.</span></h2>
+<ol class="tj">
+<li class="tj-i"><div class="tj-d"><span class="y">2025</span><span class="m">MAR</span></div><div class="tj-n" aria-hidden="true"><i></i></div>
+<article class="tj-c hov"><span class="tg">&gt; educação</span><h3>Lançamento: Engenharia de Software na FIAP</h3><p>Bolsa integral de 100% pelo Prouni.</p></article></li>
+<li class="tj-i"><div class="tj-d"><span class="y">2025</span><span class="m">[MÊS]</span></div><div class="tj-n" aria-hidden="true"><i class="on"></i></div>
+<article class="tj-c hov"><span class="tg">&gt; conquista</span><h3>1º lugar na Global Solution FIAP 2025</h3><p>Skillswap, entre mais de 50 equipes. [Uma linha sobre o que o Skillswap resolve e qual foi a sua parte.]</p></article></li>
+<li class="tj-i"><div class="tj-d"><span class="y">2026</span><span class="m">ABR</span></div><div class="tj-n" aria-hidden="true"><i class="now"></i></div>
+<article class="tj-c hov"><span class="tg">&gt; carreira · atual</span><h3>Estágio em Tecnologia — bp bioenergy</h3><p>Dados &amp; Automação: aplicações low-code, automações e ETL em ambiente corporativo.</p></article></li>
+</ol>
+</div>
+</section>
+
+<!-- ================= CERTIFICADOS (Urano) ================= -->
+<section class="ps" id="certificados" aria-labelledby="h-cert" style="--a: 103,195,202">
+<div class="pc reveal">
+<span class="clabel"><span class="eb"><span aria-hidden="true">// </span>CERTIFICADOS E CURSOS</span><code aria-hidden="true">learning.md</code></span>
+<h2 id="h-cert">Aprendizado que abre<br><span>novos horizontes.</span></h2>
+<p>Cada descoberta é um novo passo. Os cursos e certificados da minha trajetória, agrupados em constelações.</p>
+<div class="sky" role="group" aria-label="Constelação de certificados">
+<div class="dust" aria-hidden="true"></div>
+<svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+<g class="{{cloudOn}}"><path d="M16 36 L38 18"></path><path d="M16 36 L24 60"></path></g>
+<g class="{{engOn}}"><path d="M56 66 L82 40 L76 84 Z"></path></g>
+</svg>
+<span class="cname" aria-hidden="true" style="left: 8%; bottom: 14%">NUVEM</span>
+<span class="cname" aria-hidden="true" style="right: 5%; top: 8%">ENGENHARIA</span>
+<span aria-hidden="true" style="position: absolute; left: 24%; top: 60%; width: 4px; height: 4px; margin: -2px; border-radius: 50%; background: #cfe; opacity: .6"></span>
+<sc-for list="{{certs}}" as="c" hint-placeholder-count="5">
+<button type="button" class="star {{c.cls}}" style="left: {{c.x}}; top: {{c.y}}" aria-pressed="{{c.pressed}}" aria-label="{{c.name}}, {{c.issuer}}" onClick="{{c.pick}}"><span class="core" aria-hidden="true" style="animation-delay: {{c.delay}}"></span><span class="lb">{{c.name}}</span></button>
+</sc-for>
+<span class="skyhint" aria-hidden="true">selecione uma estrela</span>
+</div>
+<div class="cdetail" aria-live="polite">
+<div><span class="ck">CREDENCIAL {{cert.num}} · {{cert.group}}</span><h3>{{cert.name}}</h3><span class="cv">{{cert.issuer}} · {{cert.year}}</span></div>
+<a href="#" class="obtn">Verificar credencial <span aria-hidden="true">↗</span></a>
+</div>
+<div class="bwrap">
+<p class="bhead"><span>// alternativa · insígnias de missão</span><span>compare com a constelação</span></p>
+<ul class="badges">
+<sc-for list="{{badges}}" as="b" hint-placeholder-count="5">
+<li><a href="#" class="badge" aria-label="{{b.name}}, {{b.issuer}} — verificar credencial">
+<svg class="patch" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="{{b.pid}}" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"></path></defs><circle cx="60" cy="60" r="57" fill="#0d0f13" stroke="{{b.color}}" stroke-width="3"></circle><circle cx="60" cy="60" r="52" fill="none" stroke="{{b.color}}" stroke-opacity=".5" stroke-width="1" stroke-dasharray="2 3"></circle><circle cx="60" cy="60" r="29" fill="{{b.fill}}" stroke="{{b.color}}" stroke-opacity=".65"></circle><ellipse cx="60" cy="60" rx="40" ry="11" fill="none" stroke="#ffffff30" stroke-width=".8" transform="rotate(-22 60 60)"></ellipse><text font-size="7.5" letter-spacing="1" fill="#ece8e0" font-family="JetBrains Mono, monospace"><textPath href="#{{b.pid}}" startOffset="25%" text-anchor="middle">{{b.arc}}</textPath></text><text x="60" y="63" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff" font-family="Space Grotesk, sans-serif">{{b.short}}</text><text x="60" y="74" text-anchor="middle" font-size="7" fill="{{b.color}}" font-family="JetBrains Mono, monospace">{{b.year}}</text><circle cx="36" cy="96" r="1.4" fill="{{b.color}}"></circle><circle cx="60" cy="102" r="1.8" fill="{{b.color}}"></circle><circle cx="84" cy="96" r="1.4" fill="{{b.color}}"></circle></svg>
+<span class="bn">{{b.name}}</span><span class="bi">{{b.issuer}}</span><span class="bv">verificar ↗</span>
+</a></li>
+</sc-for>
+</ul>
+</div>
+<p class="foot" style="margin-top: 12px">[Confirmar emissor e ano, e adicionar os links de verificação.]</p>
+</div>
+<div class="pscene uranus" aria-hidden="true"><div class="ppath"></div><div class="psphere"></div></div>
+</section>
+
+<!-- ================= CONTATO — módulo satélite (Netuno) ================= -->
+<section class="smod" id="contato" aria-labelledby="h-cont">
+<div class="trails" aria-hidden="true"><i style="--i: 0"></i><i style="--i: 1"></i><i style="--i: 2"></i><i style="--i: 3"></i><i style="--i: 4"></i><i style="--i: 5"></i><i style="--i: 6"></i><i style="--i: 7"></i><i style="--i: 8"></i><i style="--i: 9"></i><i style="--i: 10"></i><i style="--i: 11"></i></div>
+<div class="mback" aria-hidden="true"><div class="pscene neptune"><div class="ppath"></div><div class="psphere"></div></div></div>
+<div class="sat reveal">
+<div class="spanel pL" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="sbody">
+<div class="tele" aria-hidden="true"><span><i></i> eups@module:~</span><span>contato.sh</span></div>
+<div class="boot" aria-hidden="true"><span><b>$</b> ./contato.sh --canal=aberto</span><span><i>[ok]</i> Canal de comunicação estabelecido.</span></div>
+<span class="clabel"><span class="eb"><span aria-hidden="true">// </span>CONTATO</span></span>
+<h2 id="h-cont">Chegamos longe.<br><span>Vamos ainda mais além?</span></h2>
+<p class="sp">Tem uma vaga de estágio em backend ou quer conversar sobre algum projeto? A transmissão chega direto na minha caixa.</p>
+<a href="mailto:contato.eduardoulisses@gmail.com" class="mail">contato.eduardoulisses@gmail.com</a>
+<div class="cbtns">
+<a href="https://linkedin.com/in/eduardo-ulisses" class="cbtn solid">Conversar no LinkedIn <span aria-hidden="true">↗</span></a>
+<a href="https://github.com/UlissesE" class="cbtn">GitHub <span aria-hidden="true">↗</span></a>
+<a href="#" class="cbtn">Currículo (PDF) <span aria-hidden="true">↓</span></a>
+</div>
+<p class="prompt" aria-hidden="true"><span>eduardo@mission</span>:~$ <i></i></p>
+<div class="engine" aria-hidden="true"><span></span><span></span><span></span></div>
+</div>
+<div class="spanel pR" aria-hidden="true"><span></span><span></span><span></span></div>
+</div>
+<span class="flabel" aria-hidden="true">TRAJETÓRIA CONTÍNUA / PROPÓSITO COMO COMBUSTÍVEL</span>
+</section>
+</div>
+</main>
+
+<footer class="ft"><a class="logo" href="#inicio" aria-label="Voltar ao início">eu<span>.</span></a><span>© 2026 Eduardo Ulisses · Feito com curiosidade e código.</span><a href="#inicio">De volta ao Sol ↑</a></footer>
+
+<!-- ================= MODAL DO PROJETO ================= -->
+<sc-if value="{{modalOpen}}" hint-placeholder-val="{{ false }}">
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="pf-mt">
+<button type="button" class="scrim" aria-label="Fechar detalhes" onClick="{{close}}"></button>
+<div class="mpanel">
+<button type="button" class="mclose" aria-label="Fechar detalhes" onClick="{{close}}">×</button>
+<header class="mhead">
+<div class="morb {{cur.style}}" aria-hidden="true"></div>
+<div class="eb"><span>MISSÃO {{cur.num}}</span><span>{{cur.kindUp}}</span><span class="{{cur.statusClass}}"><i aria-hidden="true"></i>{{cur.status}}</span></div>
+<div class="mpath"><span>missions/</span>{{cur.file}}</div>
+<h2 id="pf-mt">{{cur.name}}</h2>
+<p>{{cur.desc}}</p>
+</header>
+<div class="mbody">
+<div>
+<p class="msec"><span>arquitetura · fluxo de dados</span><span>{{cur.archNote}}</span></p>
+<figure class="march">
+<div class="mflow">
+<sc-for list="{{cur.nodes}}" as="n" hint-placeholder-count="4">
+<div class="mnode {{n.hl}}"><span class="mt">{{n.tag}}</span><span class="mn">{{n.name}}</span></div>
+<sc-if value="{{n.wire}}" hint-placeholder-val="{{ true }}"><div class="mwire" aria-hidden="true"><span class="ml">{{n.via}}</span><div class="mline"><i class="mpk"></i><i class="mpk b"></i></div><span class="mspacer"></span></div></sc-if>
+</sc-for>
+</div>
+<figcaption class="minfra">{{cur.infra}}</figcaption>
+</figure>
+</div>
+<dl class="mpar">
+<div><dt>problema</dt><dd>{{cur.problem}}</dd></div>
+<div><dt>abordagem</dt><dd>{{cur.approach}}</dd></div>
+<div><dt>resultado</dt><dd>{{cur.result}}</dd></div>
+</dl>
+<div class="mtags"><sc-for list="{{cur.stack}}" as="s" hint-placeholder-count="5"><span>{{s}}</span></sc-for></div>
+<div class="mfoot">
+<a href="{{cur.page}}" class="pbtn"><span class="cmd">abrirMissão<span>()</span></span> <span aria-hidden="true">→</span></a>
+<sc-if value="{{cur.hasRepo}}" hint-placeholder-val="{{ true }}"><a href="{{cur.repo}}" class="obtn">Repositório <span aria-hidden="true">↗</span></a></sc-if>
+<sc-if value="{{cur.noRepo}}" hint-placeholder-val="{{ false }}"><span class="mph">[link do repositório]</span></sc-if>
+<span class="mnote">{{cur.pageNote}}</span>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"gold":{"editor":"color","default":"#DFAB75","options":["#DFAB75","#E8A866","#F4B24F","#C7D6E6"],"section":"Tema"},"eupsOpacity":{"editor":"range","default":0.07,"min":0,"max":0.3,"step":0.01,"section":"Tema"},"$preview":{"width":1440,"height":8600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { paused: false, selected: null, cert: 0 };
+    this.certs = [
+      { name: 'AWS Cloud Foundations', issuer: 'AWS Academy', year: '[ano]', group: 'NUVEM', x: '16%', y: '36%', side: 'right' },
+      { name: 'AWS AI Foundations', issuer: 'AWS Academy', year: '[ano]', group: 'NUVEM', x: '38%', y: '18%', side: 'right' },
+      { name: 'Java', issuer: 'FIAP · Nano Course', year: '[ano]', group: 'ENGENHARIA', x: '56%', y: '66%', side: 'right' },
+      { name: 'Engenharia de Software', issuer: 'FIAP · Nano Course', year: '[ano]', group: 'ENGENHARIA', x: '82%', y: '40%', side: 'left' },
+      { name: 'Design Thinking', issuer: 'FIAP · Nano Course', year: '[ano]', group: 'ENGENHARIA', x: '76%', y: '84%', side: 'left' }
+    ];
+    this.projects = [
+      { name: 'Wine Cellar Monitoring', file: 'wine-cellar.ts', style: 'ember', cat: 'IOT · BACKEND', status: 'concluída', kind: 'acadêmico · 2025',
+        desc: 'Pipeline IoT ponta a ponta: do sensor no ESP32 ao dashboard em tempo real, com histórico persistido e alertas automáticos de temperatura, umidade e luminosidade.',
+        nodes: [
+          { tag: 'edge', name: 'ESP32 · sensores', via: 'MQTT' },
+          { tag: 'contexto', name: 'Orion Broker', via: 'histórico' },
+          { tag: 'persistência', name: 'STH-Comet · MongoDB', via: 'API' },
+          { tag: 'interface', name: 'Dashboard React', hl: 'hl' }
+        ],
+        infra: 'infra · Docker Compose · AWS EC2', archNote: '4 serviços',
+        problem: 'Vinhos armazenados sem controle de temperatura, umidade e luminosidade.',
+        approach: 'Telemetria via MQTT para stack Fiware em AWS EC2, toda containerizada com Docker Compose.',
+        result: 'Monitoramento 24/7 com status OK / Atenção / Crítico e documentação de setup e API.',
+        stack: ['ESP32', 'MQTT', 'Fiware', 'MongoDB', 'Docker', 'AWS EC2', 'React', 'TypeScript'],
+        repo: 'https://github.com/UlissesE/wine-cellar-monitoring', page: 'CaseStudy.dc.html', pageNote: 'estudo de caso completo' },
+      { name: 'ClienteApp', file: 'clienteapp.java', style: 'cosmos', cat: 'BACK-END · JAVA', status: 'concluída', kind: 'pessoal · 2026',
+        desc: 'CRUD de clientes PF/PJ em Java 17 puro — sem framework, de propósito, para provar os fundamentos antes de delegá-los ao Spring Boot.',
+        nodes: [
+          { tag: 'ui', name: 'Menu de console', via: 'comando' },
+          { tag: 'service', name: 'Regras · validações', via: 'chama' },
+          { tag: 'repository', name: 'Persistência', via: 'serializa' },
+          { tag: 'model', name: 'Cliente · PF · PJ', hl: 'hl' }
+        ],
+        infra: 'Java 17 · sem framework · camadas espelhando Spring Boot', archNote: 'arquitetura em camadas',
+        problem: 'Mostrar domínio de Java antes de depender de um framework.',
+        approach: 'Camadas model, repository, service e ui; exceções customizadas por regra de negócio e Stream API.',
+        result: 'Unicidade de CPF/CNPJ, soft delete, relatórios e persistência entre execuções.',
+        stack: ['Java 17', 'OOP', 'Stream API', 'Exceções', 'Serialização'],
+        repo: 'https://github.com/UlissesE/clienteapp', page: 'ClienteApp.dc.html', pageNote: 'estudo de caso completo' },
+      { name: 'DashFlow', file: 'dashflow.java', style: 'trajectory', cat: 'SAAS · DDD', status: 'em andamento', kind: 'acadêmico · em grupo · 2026',
+        desc: 'SaaS B2B que analisa transcrições de reuniões de vendas com IA, para o portfólio de produtos TOTVS.',
+        nodes: [
+          { tag: 'entrada', name: 'Transcrição', via: 'upload' },
+          { tag: 'motor · FastAPI', name: 'Anonimização LGPD', via: 'prompt' },
+          { tag: 'IA', name: 'Gemini API', via: 'análise' },
+          { tag: 'domínio', name: 'Java · DDD', hl: 'hl' }
+        ],
+        infra: 'protótipo do motor em Python · domínio em Java em construção', archNote: 'em andamento',
+        problem: 'Times de vendas sem visão estruturada do que acontece nas reuniões.',
+        approach: 'Meu papel: modelagem do domínio em Java com DDD. Também prototipei o motor de IA em Python/FastAPI.',
+        result: 'Protótipo com score de risco de churn, chat multi-turno e streaming SSE.',
+        stack: ['Java', 'DDD', 'Python', 'FastAPI', 'Gemini API', 'SSE'],
+        repo: '', page: 'DashFlow.dc.html', pageNote: 'estudo de caso completo' },
+      { name: 'Alerta Seguro', file: 'alerta-seguro.ino', style: 'orbit', cat: 'IOT · EMBARCADO', status: 'concluída', kind: 'acadêmico · 2025',
+        desc: 'Dispositivo Arduino para conscientização, detecção e prevenção de enchentes em áreas urbanas vulneráveis.',
+        nodes: [
+          { tag: 'sensores', name: 'Nível · temp. · umidade', via: 'leitura' },
+          { tag: 'controle', name: 'Arduino', via: 'decide' },
+          { tag: 'saída', name: 'LED · buzzer · LCD', hl: 'hl' }
+        ],
+        infra: 'simulação em Python · site educativo com quiz', archNote: 'decisão embarcada',
+        problem: 'Alagamentos urbanos sem alerta preventivo para a população.',
+        approach: 'Monitoramento em tempo real com decisão embarcada em três estados: normal, atenção e crítico.',
+        result: 'Alertas visuais e sonoros com leitura imediata no display LCD.',
+        stack: ['Arduino', 'Python', 'HTML', 'CSS', 'JavaScript'],
+        repo: 'https://github.com/GS-Alerta-Seguro', page: 'AlertaSeguro.dc.html', pageNote: 'estudo de caso completo' }
+    ];
+  }
+  renderVals() {
+    const s = this.state;
+    const projects = this.projects.map((p, i) => ({ ...p, num: '0' + (i + 1), angle: (i * 90 - 90) + 'deg',
+      open: () => this.setState({ selected: i }) }));
+    const sel = s.selected;
+    let cur = { nodes: [], stack: [] };
+    if (sel !== null) {
+      const p = projects[sel];
+      cur = { ...p,
+        kindUp: p.kind.toUpperCase(),
+        statusClass: p.status === 'em andamento' ? 'mstatus run' : 'mstatus',
+        hasRepo: !!p.repo, noRepo: !p.repo,
+        nodes: p.nodes.map((n, j) => ({ ...n, hl: n.hl || '', wire: j < p.nodes.length - 1 })) };
+    }
+    const certs = this.certs.map((c, i) => ({ ...c, cls: c.side + (s.cert === i ? ' sel' : ''), pressed: s.cert === i ? 'true' : 'false',
+      delay: (i * -0.7) + 's', pick: () => this.setState({ cert: i }) }));
+    const cert = { ...this.certs[s.cert], num: '0' + (s.cert + 1) };
+    const badges = this.certs.map((c, i) => {
+      const aws = c.issuer.indexOf('AWS') === 0;
+      return { ...c, pid: 'pf-arc-' + i, short: aws ? 'AWS' : 'FIAP', arc: c.name.toUpperCase(),
+        color: aws ? '#F2A33A' : '#EE5A86', fill: aws ? '#2a1d0c' : '#2a0f19' };
+    });
+    return {
+      badges: badges,
+      certs: certs,
+      cert: cert,
+      cloudOn: cert.group === 'NUVEM' ? 'on' : '',
+      engOn: cert.group === 'ENGENHARIA' ? 'on' : '',
+      gold: this.props.gold ?? '#DFAB75',
+      eupsOpacity: this.props.eupsOpacity ?? 0.07,
+      projects: projects,
+      pausedClass: s.paused ? 'paused' : '',
+      pausedStr: s.paused ? 'true' : 'false',
+      pauseLabel: s.paused ? 'Retomar órbita' : 'Pausar órbita',
+      pauseIcon: s.paused ? '▷' : 'Ⅱ',
+      togglePause: () => this.setState({ paused: !s.paused }),
+      modalOpen: sel !== null,
+      cur: cur,
+      close: () => this.setState({ selected: null })
+    };
+  }
+}
+</script>
+</body>
+</html>
