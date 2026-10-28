@@ -1,0 +1,83 @@
+/* Seção de duas colunas (texto + planeta) e rótulo de código — design/Portfolio.dc.html (linhas 80–89, 375–392). */
+
+.planet-section {
+  --a: var(--acc-sobre);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 8%;
+  padding: 105px 8%;
+  min-height: 640px;
+  position: relative;
+}
+
+.planet-section__content {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+.planet-section__content h2 {
+  font-weight: 400;
+  font-size: clamp(30px, 3.1vw, 45px);
+  line-height: 1.25;
+  letter-spacing: -1.7px;
+  margin: 22px 0;
+}
+.planet-section__content h2 span {
+  color: var(--color-text-subtle);
+}
+.planet-section__content > p {
+  color: var(--color-text-muted);
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 0 0 14px;
+}
+
+.code-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+.code-label__title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  color: var(--color-label);
+}
+.code-label__title > span {
+  color: rgb(var(--a) / 0.8);
+}
+.code-label code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-mono-muted);
+  border: 1px solid var(--color-line);
+  border-radius: 3px;
+  padding: 3px 8px;
+  background: #ffffff03;
+}
+
+@media (max-width: 1050px) {
+  .planet-section {
+    gap: 5%;
+    padding: 85px 6%;
+  }
+}
+
+@media (max-width: 800px) {
+  .planet-section {
+    grid-template-columns: 1fr;
+    padding: 70px 7%;
+    gap: 28px;
+    min-height: 0;
+  }
+  /* no celular o texto vem antes do planeta, qualquer que seja o lado no desktop */
+  .planet-section .planet-section__content {
+    order: 1;
+  }
+  .planet-section > .planet {
+    order: 2;
+    max-width: 300px;
+  }
+}

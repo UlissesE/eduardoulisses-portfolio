@@ -1,0 +1,193 @@
+/* Header, foguete de rolagem e footer — design/Portfolio.dc.html (linhas 25–34, 360–372, 381–404). */
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -3px;
+  line-height: 1;
+}
+.logo span {
+  color: var(--color-gold);
+}
+
+/* ---------- header ---------- */
+.site-header {
+  height: 84px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(8, 9, 11, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #ffffff0d;
+}
+.site-header a,
+.site-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header__nav {
+  display: flex;
+  gap: 32px;
+  font-size: 14px;
+  color: #c0bfbd;
+}
+.site-header__nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px; /* área de toque */
+  transition: color 0.2s;
+}
+.site-header__nav a:hover {
+  color: #edb47e;
+}
+
+.site-header__avail {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #b4b1ab;
+}
+.site-header__avail i {
+  width: 6px;
+  height: 6px;
+  background: #d4aa78;
+  border-radius: 50%;
+  animation: live 2.4s ease-in-out infinite;
+}
+
+/* botão do menu mobile: escondido no desktop */
+.site-header__toggle {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text);
+}
+.site-header__toggle span {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition:
+    transform 0.25s,
+    opacity 0.2s;
+}
+.site-header__toggle span:nth-child(1) {
+  top: 14px;
+}
+.site-header__toggle span:nth-child(2) {
+  top: 20px;
+}
+.site-header__toggle span:nth-child(3) {
+  top: 26px;
+}
+.site-header__toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.site-header__toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.site-header__toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ---------- foguete de rolagem ---------- */
+.scroll-track {
+  position: fixed;
+  z-index: 45;
+  right: 17px;
+  top: 16vh;
+  height: 68vh;
+  width: 28px;
+  pointer-events: none;
+}
+.rocket {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 56px;
+  filter: drop-shadow(0 0 8px #dbad7530);
+}
+.rocket__flame {
+  transform-origin: 20px 30px;
+  animation: thrust 0.7s ease-in-out infinite alternate;
+}
+
+/* ---------- footer ---------- */
+.site-footer {
+  padding: 28px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--color-bg);
+  border-top: 1px solid #ffffff0b;
+}
+.site-footer .logo {
+  font-size: 27px;
+}
+.site-footer > span,
+.site-footer > a:last-child {
+  font-size: 13px;
+  color: #959ba3;
+}
+.site-footer > a:last-child {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+@media (max-width: 800px) {
+  .site-header {
+    height: 72px;
+  }
+  .site-header__avail {
+    display: none;
+  }
+  .site-header__toggle {
+    display: inline-block;
+  }
+  .site-header__nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 6% 16px;
+    font-size: 16px;
+    background: rgba(8, 9, 11, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid #ffffff0d;
+  }
+  .site-header__nav[data-open="true"] {
+    display: flex;
+  }
+  .site-header__nav a {
+    min-height: 48px;
+  }
+  .scroll-track {
+    right: 5px;
+    width: 20px;
+  }
+}

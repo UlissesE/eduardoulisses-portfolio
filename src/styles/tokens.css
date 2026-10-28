@@ -1,0 +1,73 @@
+/* Tokens do redesign EUPS — fonte: design/TOKENS.md e design/Portfolio.dc.html */
+
+/* static: emite todas as variáveis, mesmo sem classe utilitária (usadas em CSS puro, ex.: var(--color-gold)) */
+@theme static {
+  /* base */
+  --color-bg: #08090b;
+  --color-surface: #0e0f12;
+  --color-surface-2: #101218;
+  --color-surface-3: #121316;
+
+  /* texto */
+  --color-text: #f3f1ec;
+  --color-text-body: #c9c5bd;
+  --color-text-muted: #a7aaae;
+  --color-text-subtle: #a2a3a1;
+  --color-mono-muted: #8f959c;
+  --color-mono-muted-2: #9aa0a6;
+  --color-label: #c2a886;
+
+  /* marca e botão primário */
+  --color-gold: #dfab75;
+  --color-btn: #e8c8a4;
+  --color-btn-border: #e3be94;
+  --color-btn-text: #211b16;
+  --color-btn-hover: #ffdfbc;
+
+  /* linhas */
+  --color-line: #ffffff12;
+  --color-line-strong: #ffffff24;
+
+  /* status */
+  --color-ok: #b5c8a1;
+  --color-running: #8fc1ea;
+
+  /* contato */
+  --color-contact-btn: #c7d6e6;
+  --color-contact-btn-text: #141a22;
+
+  /* emissores de certificados */
+  --color-aws: #f2a33a;
+  --color-fiap: #ee5a86;
+
+  /* tipografia */
+  --font-heading: "Space Grotesk", "DM Sans", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* escala de raios (TOKENS.md: 4 / 10 / 20 / 999) */
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+}
+
+/*
+ * Acentos por seção e por missão: triplas RGB (sem rgb()) para compor com
+ * alfa, ex.: background: rgb(var(--acc-sobre) / .14).
+ */
+:root {
+  --acc-sobre: 201 194 178; /* Mercúrio */
+  --acc-formacao: 210 160 83; /* Vênus */
+  --acc-experiencia: 75 148 207; /* Terra */
+  --acc-ferramentas: 224 138 108; /* Marte */
+  --acc-projetos: 188 143 92; /* Júpiter */
+  --acc-trajetoria: 222 196 140; /* Saturno */
+  --acc-certificacoes: 103 195 202; /* Urano */
+  --acc-contato: 85 127 216; /* Netuno */
+
+  --acc-wine-cellar: 214 146 122;
+  --acc-clienteapp: 199 164 119;
+  --acc-dashflow: 129 178 165;
+  --acc-alerta-seguro: 150 168 224;
+}

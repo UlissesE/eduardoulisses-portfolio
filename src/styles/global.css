@@ -1,0 +1,59 @@
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 84px; /* altura do header fixo */
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+  }
+
+  a {
+    color: var(--color-btn);
+  }
+
+  a:hover {
+    color: #fff;
+  }
+
+  ::selection {
+    background: #c77932;
+    color: #fff;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid #e2c8a0;
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  button {
+    cursor: pointer;
+    font-family: inherit;
+  }
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+@media (max-width: 800px) {
+  html {
+    scroll-padding-top: 72px;
+  }
+}

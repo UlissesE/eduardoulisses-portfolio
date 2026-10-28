@@ -1,0 +1,47 @@
+/* Campo de estrelas — gradientes e tamanhos idênticos ao protótipo. */
+
+.stars {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(1px 1px at 15% 20%, #ccc 80%, transparent),
+    radial-gradient(1px 1px at 79% 40%, #fff 80%, transparent),
+    radial-gradient(1px 1px at 42% 70%, #aaa 80%, transparent),
+    radial-gradient(1.5px 1.5px at 63% 12%, #ffe9cf 80%, transparent);
+  background-size: 259px 241px, 383px 311px, 349px 367px, 521px 487px;
+}
+
+.drift {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 60px 120px, rgba(255, 255, 255, 0.9) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 330px 40px, rgba(255, 236, 210, 0.8) 50%, transparent 51%),
+    radial-gradient(2px 2px at 410px 360px, #fff 50%, transparent 51%);
+  background-size: 480px 480px;
+  animation: drift 180s linear infinite;
+  opacity: 0.6;
+}
+
+/* Estrelas fixas das seções após o hero */
+.journey {
+  position: relative;
+  isolation: isolate;
+}
+.journey::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image:
+    radial-gradient(1px 1px at 15% 20%, #ccc 80%, transparent),
+    radial-gradient(1px 1px at 79% 40%, #fff 80%, transparent),
+    radial-gradient(1px 1px at 42% 70%, #aaa 80%, transparent);
+  background-size: 259px 241px, 383px 311px, 349px 367px;
+}

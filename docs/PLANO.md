@@ -123,10 +123,10 @@ Preencher todos os `[ ]`: mês da Global Solution e linha do Skillswap; papel no
 ## Checklist — inventário do design (nada pode ficar de fora)
 
 **Global**
-- [ ] Header: logo "eu.", nav (Sobre mim, Formação, Projetos, Trajetória, Contato ↗), "Disponível para novas órbitas" com ponto pulsando
-- [ ] Foguete de rolagem fixo à direita, com chama animada
+- [x] Header: logo "eu.", nav (Sobre mim, Formação, Projetos, Trajetória, Contato ↗), "Disponível para novas órbitas" com ponto pulsando
+- [x] Foguete de rolagem fixo à direita, com chama animada
 - [ ] Campo de estrelas contínuo
-- [ ] Footer: "eu.", © 2026, "De volta ao Sol ↑"
+- [x] Footer: "eu.", © 2026, "De volta ao Sol ↑"
 - [ ] Reveal das seções ao rolar
 - [ ] `prefers-reduced-motion`
 
