@@ -1,6 +1,6 @@
 import Section from "./Section";
 import image from "../assets/images/image.png";
-import { Gamepad2Icon, Trophy } from "lucide-react";
+import { BookOpen, Gamepad2Icon } from "lucide-react";
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 
@@ -16,7 +16,7 @@ export default function AboutSection() {
       tituloAnimacao="world"
     >
       <motion.div
-        className="grid md:grid-cols-[300px_1fr] gap-12 items-start py-12"
+        className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-12 items-start py-12"
         ref={ref}
         initial={{ y: 50, opacity: 0 }}
         animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
@@ -39,7 +39,7 @@ export default function AboutSection() {
             <div className="relative w-full aspect-square bg-primary/20 rounded-2xl border-2 border-primary/30 flex items-center justify-center overflow-hidden">
               <img
                 src={image}
-                alt=""
+                alt="Foto de Eduardo Ulisses"
                 className="h-full object-cover rounded-lg pointer-events-auto"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -53,26 +53,25 @@ export default function AboutSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <div className="pointer-events-auto">
-            <p className="text-2xl text-foreground leading-relaxed mb-4">
+            <p className="text-lg md:text-2xl text-foreground leading-relaxed mb-4">
               Sou um estudante apaixonado por{" "}
               <strong className="text-primary">tecnologia</strong> e
               <strong className="text-primary"> inovação</strong>, cursando
               Engenharia de Software na{" "}
               <a
                 href="https://www.fiap.com.br/"
-                className="text-primary font-bold"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary font-bold underline"
               >
                 FIAP
-              </a>
-              . Minha jornada começou com a curiosidade de entender como as
-              coisas funcionam "por trás dos panos".
+              </a> (4º semestre) e estagiando na <strong className="text-primary font-bold">BP Bioenergy</strong>, onde trabalho com desenvolvimento, automação e dados.
             </p>
-            <p className="text-2xl text-foreground leading-relaxed">
-              Atualmente estou no{" "}
-              <strong className="text-primary">3º semestre</strong>, focado em
-              desenvolvimento full stack. Acredito que a melhor forma de
-              aprender é colocando a mão na massa, por isso estou sempre
-              trabalhando em projetos pessoais e buscando novos desafios.
+            <p className="text-lg md:text-2xl text-foreground leading-relaxed mb-4">
+              Minha jornada começou com a curiosidade de entender como as
+              coisas funcionam "por trás dos panos", e até hoje me fascino vendo as engrenagens girarem.</p>
+            <p className="text-lg md:text-2xl text-foreground leading-relaxed">
+              Busco minha primeira oportunidade como desenvolvedor backend em um time que valorize boas práticas e evolução técnica constante.
             </p>
           </div>
         </motion.div>
@@ -88,11 +87,11 @@ export default function AboutSection() {
         </h4>
         <div className="flex flex-wrap gap-2">
           {[
-            "Next.js & TypeScript",
-            "Java & Python",
-            "Node.js & Express",
-            "PostgreSQL",
-            "AWS Cloud",
+            "Java & SpringBoot",
+            "Banco de Dados Oracle",
+            "Cloud & IA AWS Certification",
+            "Metodologias Ágeis",
+            "Dynamic Programming"
           ].map((tech) => (
             <span
               key={tech}
@@ -130,7 +129,7 @@ export default function AboutSection() {
         >
           <div className="flex items-center gap-3 mb-3">
             <div className="p-3 bg-primary/10 rounded-lg">
-              <Trophy className="w-6 h-6 text-primary" />
+              <BookOpen className="w-6 h-6 text-primary" />
             </div>
             <h4 className="text-lg">Leitura</h4>
           </div>
