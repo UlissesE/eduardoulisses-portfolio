@@ -8,7 +8,7 @@ Este arquivo é lido em toda sessão. Siga-o antes de qualquer outra suposição
 - **Objetivo:** conseguir entrevistas para **estágio em desenvolvimento backend Java** na Grande São Paulo.
 - **Público:** recrutadores (30–60 s no site) e tech leads (querem ver raciocínio de engenharia: arquitetura, decisões, trade-offs).
 - **Idioma:** português do Brasil. Versão em inglês é opcional e fica para o fim.
-- Em andamento: **redesign completo** com tema sci-fi espacial ("viagem pelo sistema solar"). "EUPS" é o apelido do Eduardo e aparece como marca d'água no hero.
+- Em andamento: **redesign completo** com tema sci-fi espacial ("viagem pelo sistema solar"). "EUPS" é o apelido do Eduardo (a marca d'água "EUPS" no hero foi removida a pedido dele).
 
 ## Stack e comandos
 

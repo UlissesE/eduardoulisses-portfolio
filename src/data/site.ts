@@ -20,3 +20,15 @@ export const footerContent = {
   copyright: "© 2026 Eduardo Ulisses · Feito com curiosidade e código.",
   backToTop: "De volta ao Sol ↑",
 };
+
+export const heroContent = {
+  path: "~/eduardo-ulisses",
+  pathSuffix: " / portfolio",
+  status: "SISTEMA ONLINE · BASE: TERRA",
+  eyebrow: "“Devemos pensar não como indivíduos, mas como espécie.”",
+  name: "Eduardo Ulisses",
+  role: "Desenvolvedor backend · Java",
+  cta: "explorarProjetos",
+  cue: "role para explorar",
+  verticalLabel: "UMA JORNADA EM CONSTANTE EXPANSÃO",
+};

@@ -13,9 +13,16 @@
   background-size: 259px 241px, 383px 311px, 349px 367px, 521px 487px;
 }
 
+/*
+ * Camada maior que o pai (+960px × +480px, múltiplos do tile de 480px) para que o
+ * translate(−960px, 480px) do keyframe cubra sempre a área visível e o loop emende.
+ */
 .drift {
   position: absolute;
-  inset: 0;
+  top: -480px;
+  left: 0;
+  width: calc(100% + 960px);
+  height: calc(100% + 480px);
   z-index: -3;
   pointer-events: none;
   background-image:

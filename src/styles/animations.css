@@ -12,9 +12,10 @@
     filter: none;
   }
 }
+/* Equivale ao `background-position` do protótipo (−960px 480px), mas em transform (sem repintar). */
 @keyframes drift {
   to {
-    background-position: -960px 480px;
+    transform: translate(-960px, 480px);
   }
 }
 @keyframes eglow {

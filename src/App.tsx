@@ -2,9 +2,9 @@ import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 import PlanetSection, { type Accent } from "./components/layout/PlanetSection";
 import ScrollRocket from "./components/layout/ScrollRocket";
-import Starfield from "./components/layout/Starfield";
 import CodeLabel from "./components/ui/CodeLabel";
 import type { PlanetName } from "./components/ui/Planet";
+import Hero from "./sections/Hero";
 
 // Esqueleto temporário da Etapa 2: valida header, âncoras, planetas e responsivo.
 // Cada seção é substituída pelo componente real nas Etapas 3–7.
@@ -32,15 +32,7 @@ function App() {
       <ScrollRocket />
       <Header />
       <main>
-        <section
-          id="inicio"
-          aria-labelledby="hero-title"
-          className="relative isolate grid min-h-[60vh] place-items-center overflow-hidden"
-        >
-          <Starfield />
-          <h1 id="hero-title">[hero em construção]</h1>
-        </section>
-
+        <Hero />
         <div className="journey">
           {skeleton.map((section) => (
             <PlanetSection

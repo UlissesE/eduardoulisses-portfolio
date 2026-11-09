@@ -48,7 +48,7 @@ Fonte da verdade do design: os arquivos `design/*.dc.html` (exportados do canvas
 ## Etapa 3 — Hero
 
 - Eclipse (SVG → componente ou arquivo em `public/`), órbitas, estrelas com drift.
-- EUPS via `mask-image` sobre o PNG (permite trocar a cor pelo token).
+- ~~EUPS via `mask-image` sobre o PNG~~ — removido por decisão do Eduardo.
 - Título, linha `</> Desenvolvedor backend · Java` com cursor, botão `explorarProjetos()`, `// mission.init` no canto, texto vertical "UMA JORNADA EM CONSTANTE EXPANSÃO", "role para explorar".
 - Animação de entrada (CSS ou Motion).
 
@@ -131,11 +131,11 @@ Preencher todos os `[ ]`: mês da Global Solution e linha do Skillswap; papel no
 - [ ] `prefers-reduced-motion`
 
 **Hero**
-- [ ] Eclipse com brilho pulsando · órbitas · estrelas em drift
-- [ ] EUPS mascarado, inclinado, opacidade ~0.07
-- [ ] Linha superior "~/eduardo-ulisses / portfolio" e "SISTEMA ONLINE · BASE: TERRA"
-- [ ] "O PRÓXIMO PASSO É SEMPRE ALÉM" · nome · `</> Desenvolvedor backend · Java` com cursor
-- [ ] Botão `explorarProjetos()` · `// mission.init` no canto · texto vertical · "role para explorar"
+- [x] Eclipse com brilho pulsando · órbitas · estrelas em drift
+- [x] ~~EUPS mascarado~~ (removido por decisão do Eduardo)
+- [x] Linha superior "~/eduardo-ulisses / portfolio" e "SISTEMA ONLINE · BASE: TERRA"
+- [x] "O PRÓXIMO PASSO É SEMPRE ALÉM" · nome · `</> Desenvolvedor backend · Java` com cursor
+- [x] Botão `explorarProjetos()` · `// mission.init` no canto · texto vertical · "role para explorar"
 
 **Sobre (Mercúrio)**
 - [ ] Foto em arco · textos
